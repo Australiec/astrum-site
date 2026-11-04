@@ -38,7 +38,7 @@ document.addEventListener('keydown', event => {
     burger.focus();
   }
 });
-matchMedia('(max-width: 820px)').addEventListener('change', () => setMenu(false));
+matchMedia('(max-width: 1020px)').addEventListener('change', () => setMenu(false));
 
 /* плавный скролл наверх при клике на Главную или лого */
 document.querySelectorAll('.nav-links a[href="./"], .brand[href="./"]').forEach(a => {
@@ -70,10 +70,19 @@ const onScroll = () => {
 };
 addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
+/* Переключатель день / ночь. */
+document.getElementById('sw').addEventListener('click', () => {
+  const root = document.documentElement;
+  const sky = root.dataset.sky === 'night' ? 'day' : 'night';
+  root.dataset.sky = sky;
+  document.querySelector('meta[name="theme-color"]').content = sky === 'night' ? '#010101' : '#fff8f0';
+  try { localStorage.setItem('astrum-sky', sky); } catch {}
+});
+
 /* мягкое появление блоков при прокрутке */
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
-  document.querySelectorAll('.principle,.card,.step,.qs,.community,.section-head,.intro-heading').forEach(el => { el.classList.add('rv'); io.observe(el); });
+  document.querySelectorAll('.p,.card,.step,.qs,.band,.head').forEach(el => { el.classList.add('rv'); io.observe(el); });
 }
 
 /* плавный аккордеон FAQ */

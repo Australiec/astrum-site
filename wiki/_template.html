@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru-RU" data-sky="night">
+<html lang="ru-RU" data-sky="day">
     <head>
         <meta charset="utf-8" />
 
@@ -7,7 +7,7 @@
         <title>{{TITLE}}</title>
         <meta name="description" content="{{DESC}}" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-        <meta name="theme-color" content="#010101" />
+        <meta name="theme-color" content="#fff8f0" />
         <link rel="canonical" href="{{CANON}}" />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="ASTRUM" />
@@ -26,7 +26,20 @@
         <script type="application/ld+json">
             {{JSONLD}}
         </script>
-        <script src="{{UP}}assets/theme.js"></script>
+        <link rel="stylesheet" href="{{UP}}assets/fonts/cartoon.css" />
+        <script>
+            (function () {
+                var s = null;
+                try {
+                    s = localStorage.getItem("astrum-sky");
+                } catch (e) {}
+                if (!s) {
+                    var h = new Date().getHours();
+                    s = h >= 7 && h < 19 ? "day" : "night";
+                }
+                document.documentElement.dataset.sky = s;
+            })();
+        </script>
         <style>
             :root {
                 --bg: #fff8f0;
@@ -43,13 +56,13 @@
                 --ease: cubic-bezier(0.16, 1, 0.3, 1);
             }
             html[data-sky="night"] {
-                --bg: #000000;
+                --bg: #010101;
                 --panel: #121212;
                 --ink: #f3f1ec;
                 --muted: #ababab;
                 --line: #ffffff1c;
                 --soft: #ffffff0d;
-                --glass: #000000;
+                --glass: #010101;
                 --coral: #ff7a57;
                 --grad: #ff7a57;
                 --code: #1e1e1e;
@@ -694,8 +707,6 @@
                 }
             }
         </style>
-        <link rel="stylesheet" href="{{UP}}assets/theme.css" />
-        <link rel="stylesheet" href="{{UP}}assets/wiki.css" />
     </head>
     <body>
         <header class="top">
@@ -710,7 +721,7 @@
                     <a href="https://shop.astrums.pro">Магазин</a>
                     <a href="https://discord.gg/7jnWGDB2fP" rel="noopener">Discord</a>
                 </nav>
-                <button class="ib" id="sw" aria-label="Включить светлую тему">
+                <button class="ib" id="sw" aria-label="День / ночь" title="День / ночь">
                     <svg class="sun" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4" />
                         <path
@@ -719,7 +730,7 @@
                     </svg>
                     <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z" /></svg>
                 </button>
-                <button class="ib menu" id="menu" aria-label="Разделы" aria-controls="nav" aria-expanded="false">
+                <button class="ib menu" id="menu" aria-label="Разделы">
                     <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
                 </button>
             </div>
@@ -760,21 +771,17 @@
         <div class="lb" id="lb"><img alt="" /></div>
         <script>
             const W = "{{W}}",
-                $ = s => document.querySelector(s);
-            /* Меню и просмотр картинок. */
-            const setMenu = open => {
-                document.body.classList.toggle("open", open);
-                $("#menu").setAttribute("aria-expanded", String(open));
-                document.querySelector(".shell > main").inert = open;
+                $ = s => document.querySelector(s),
+                root = document.documentElement;
+            /* день / ночь, меню, просмотр картинок */
+            $("#sw").onclick = () => {
+                const s = root.dataset.sky === "night" ? "day" : "night";
+                root.dataset.sky = s;
+                try {
+                    localStorage.setItem("astrum-sky", s);
+                } catch (e) {}
             };
-            $("#menu").onclick = () => setMenu(!document.body.classList.contains("open"));
-            matchMedia("(max-width: 860px)").addEventListener("change", () => setMenu(false));
-            document.addEventListener("keydown", event => {
-                if (event.key === "Escape" && document.body.classList.contains("open")) {
-                    setMenu(false);
-                    $("#menu").focus();
-                }
-            });
+            $("#menu").onclick = () => document.body.classList.toggle("open");
             document.querySelectorAll(".prose img").forEach(
                 i =>
                     (i.onclick = () => {
