@@ -1,0 +1,63 @@
+@font-face {
+  font-family: Onest;
+  src: url(fonts/onest.woff2) format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: Unbounded;
+  src: url(fonts/unbounded.woff2) format('woff2');
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+html[data-sky] {
+  color-scheme: dark;
+  --bg: #010101;
+  --surface: #0b0b0b;
+  --panel: #0b0b0b;
+  --ink: #efefed;
+  --muted: #92928f;
+  --faint: #757570;
+  --line: #ffffff21;
+  --soft: #ffffff08;
+  --glass: #010101ed;
+  --accent: #e6a03f;
+  --accent-hover: #f5bb6a;
+  --accent-soft: #e6a03f0d;
+  --coral: var(--accent);
+  --coral-d: var(--accent-hover);
+  --grad: var(--accent);
+  --code: #161616;
+  --gold: var(--accent);
+  --shadow: none;
+  --heading-font: Unbounded, sans-serif;
+  --body-font: Onest, system-ui, sans-serif;
+}
+html[data-sky='day'] {
+  color-scheme: light;
+  --bg: #f7f6f2;
+  --surface: #fdfcf9;
+  --panel: #fdfcf9;
+  --ink: #20201d;
+  --muted: #666660;
+  --faint: #73736b;
+  --line: #20201d24;
+  --soft: #20201d06;
+  --glass: #f7f6f2ed;
+  --accent: #925913;
+  --accent-hover: #70420b;
+  --accent-soft: #9259130b;
+  --code: #eeede8;
+}
+::selection { background: #e6a03f55; color: var(--ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+button, input { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.sw .sun, #sw .sun { display: none; }
+.sw .moon, #sw .moon { display: block; }
+html[data-sky='day'] #sw .sun { display: block; }
+html[data-sky='day'] #sw .moon { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}

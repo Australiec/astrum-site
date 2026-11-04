@@ -1,18 +1,44 @@
 /* ASTRUM — скрипт главной страницы (подключается с defer) */
 const IP = 'astrums.pro';
-const root = document.documentElement;
 
 /* копирование IP */
 const toast = document.getElementById('toast');
-document.querySelectorAll('[data-ip]').forEach(b => b.addEventListener('click', () => {
-  try { navigator.clipboard.writeText(IP); } catch (e) {}
+let toastTimer;
+document.querySelectorAll('[data-ip]').forEach(b => b.addEventListener('click', async () => {
+  let copied = false;
+  try { await navigator.clipboard.writeText(IP); copied = true; } catch {
+    const input = document.createElement('textarea');
+    input.value = IP;
+    input.style.cssText = 'position:fixed;left:-9999px';
+    document.body.appendChild(input);
+    input.select();
+    try { copied = document.execCommand('copy'); } catch {}
+    input.remove();
+    b.focus({ preventScroll: true });
+  }
+  toast.textContent = copied ? 'IP скопирован — до встречи в игре' : 'IP сервера: ' + IP;
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 1600);
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
 }));
 
 /* мобильное меню */
-document.querySelector('.burger').addEventListener('click', () => document.body.classList.toggle('menu-open'));
-document.querySelectorAll('.top a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('menu-open')));
+const burger = document.querySelector('.burger');
+const setMenu = open => {
+  document.body.classList.toggle('menu-open', open);
+  document.querySelectorAll('main, footer').forEach(el => { el.inert = open; });
+  burger.setAttribute('aria-expanded', String(open));
+  burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+};
+burger.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+document.querySelectorAll('.top a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && document.body.classList.contains('menu-open')) {
+    setMenu(false);
+    burger.focus();
+  }
+});
+matchMedia('(max-width: 820px)').addEventListener('change', () => setMenu(false));
 
 /* плавный скролл наверх при клике на Главную или лого */
 document.querySelectorAll('.nav-links a[href="./"], .brand[href="./"]').forEach(a => {
@@ -36,7 +62,7 @@ const updateActiveNav = () => {
   navHome.classList.toggle('active', !inFaq);
 };
 
-/* шапка: прозрачная над картинкой, плавающие капсулы при прокрутке */
+/* Полупрозрачная шапка при прокрутке. */
 const nav = document.getElementById('nav');
 const onScroll = () => {
   nav.classList.toggle('solid', scrollY > 40);
@@ -44,17 +70,10 @@ const onScroll = () => {
 };
 addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-/* переключатель день / ночь */
-document.getElementById('sw').addEventListener('click', () => {
-  const s = root.dataset.sky === 'night' ? 'day' : 'night';
-  root.dataset.sky = s;
-  try { localStorage.setItem('astrum-sky', s); } catch (e) {}
-});
-
 /* мягкое появление блоков при прокрутке */
-if ('IntersectionObserver' in window) {
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
-  document.querySelectorAll('.p,.card,.step,.qs,.band,.head').forEach(el => { el.classList.add('rv'); io.observe(el); });
+  document.querySelectorAll('.principle,.card,.step,.qs,.community,.section-head,.intro-heading').forEach(el => { el.classList.add('rv'); io.observe(el); });
 }
 
 /* плавный аккордеон FAQ */
@@ -180,8 +199,8 @@ document.querySelectorAll('.qs details').forEach(details => {
 
 /* статус сервера и число игроков — после отрисовки страницы */
 const plural = n => n % 10 === 1 && n % 100 !== 11 ? 'игрок' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'игрока' : 'игроков';
-const loadStatus = () => fetch('https://api.mcsrvstat.us/3/' + IP)
-  .then(r => r.json())
+const loadStatus = () => fetch('https://api.mcsrvstat.us/3/' + IP, { signal: AbortSignal.timeout(10000) })
+  .then(r => { if (!r.ok) throw new Error('Status unavailable'); return r.json(); })
   .then(d => {
     const on = d && d.online, n = on && d.players ? d.players.online : 0;
     const box = document.getElementById('status');
@@ -189,5 +208,8 @@ const loadStatus = () => fetch('https://api.mcsrvstat.us/3/' + IP)
     box.children[1].textContent = on ? 'Сервер онлайн' : 'Сервер оффлайн';
     document.getElementById('count').textContent = on ? '· ' + n + ' ' + plural(n) : '';
   })
-  .catch(() => {});
+  .catch(() => {
+    document.getElementById('status').classList.add('off');
+    document.getElementById('status').children[1].textContent = 'Статус недоступен';
+  });
 setTimeout(() => (window.requestIdleCallback || (f => f()))(loadStatus), 600);
