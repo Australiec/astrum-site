@@ -1627,6 +1627,7 @@
                 }
             }
         </style>
+        <link rel="stylesheet" href="assets/cartoon-polish.css" />
     </head>
     <body>
         <canvas id="fx" aria-hidden="true"></canvas>
@@ -1711,11 +1712,16 @@
                     <div class="hbg-fade"></div>
                 </div>
                 <div class="wrap">
-                    <span class="status" id="status"><i></i><span>Сервер онлайн</span><span id="count"></span></span>
+                    <div class="hero-copy">
+                    <div class="hero-meta">
+                        <span class="hero-eyebrow">Minecraft Java · Сделано для своих</span>
+                        <span class="status" id="status"><i></i><span>Проверяем сервер</span><span id="count"></span></span>
+                    </div>
                     <h1>Создай свою <span>историю</span></h1>
                     <p class="lead">
                         Ванильный Minecraft с городами, парламентом и свободой — без приватов и лишних команд.
                     </p>
+                    <div class="hero-perks"><span>Без приватов</span><span>РП по желанию</span><span>Лицензия не нужна</span></div>
                     <div class="cta">
                         <a class="btn btn-main" href="wiki/how-play/">Начать игру →</a>
                         <a class="btn btn-light" href="map/">Открыть карту</a>
@@ -1723,6 +1729,16 @@
                     <button class="ip" data-ip aria-label="Скопировать IP astrums.pro">
                         IP <b>astrums.pro</b><span>Копировать</span>
                     </button>
+                    </div>
+                    <div class="hero-note" aria-hidden="true">
+                        <div class="note-icon">
+                            <svg viewBox="0 0 48 48"><path d="M24 4 42 14 24 24 6 14z" fill="#83ca67"/><path d="M6 14 24 24v20L6 34z" fill="#a5744c"/><path d="M42 14 24 24v20l18-10z" fill="#7c5438"/><path d="M6 14 24 24 42 14v5L24 29 6 19z" fill="#5aab50"/></svg>
+                        </div>
+                        <span class="note-sticker">Твой новый дом</span>
+                        <strong>Строй. Дружи.<br>Исследуй.</strong>
+                        <p>Здесь начинается твоя история.</p>
+                        <span class="note-spark">✦</span>
+                    </div>
                 </div>
             </section>
 
@@ -1786,45 +1802,27 @@
                         <p>Карта мира в реальном времени, вики с механиками и магазин проходок.</p>
                     </div>
                     <div class="cards">
-                        <a class="card" href="map/"
-                            ><img
-                                src="assets/meadow.webp"
-                                width="1140"
-                                height="760"
-                                loading="lazy"
-                                decoding="async"
-                                alt=""
-                            /><span class="tag">Живая</span>
-                            <h3>Карта</h3>
-                            <p>Увидь мир с высоты.</p>
-                            <span class="go" aria-hidden="true">→</span></a
-                        >
-                        <a class="card" href="wiki/"
-                            ><img
-                                src="assets/copper.webp"
-                                width="1170"
-                                height="500"
-                                loading="lazy"
-                                decoding="async"
-                                alt=""
-                            /><span class="tag">Гайды</span>
-                            <h3>Вики</h3>
-                            <p>Всё важное — в одном месте.</p>
-                            <span class="go" aria-hidden="true">→</span></a
-                        >
-                        <a class="card" href="https://shop.astrums.pro"
-                            ><img
-                                src="assets/rainbow.webp"
-                                width="900"
-                                height="384"
-                                loading="lazy"
-                                decoding="async"
-                                alt=""
-                            /><span class="tag">Проходки</span>
-                            <h3>Магазин</h3>
-                            <p>Поддержи развитие ASTRUM.</p>
-                            <span class="go" aria-hidden="true">→</span></a
-                        >
+                        <a class="card" href="map/">
+                            <div class="card-scene">
+                                <img src="assets/meadow.webp" width="1140" height="760" loading="lazy" decoding="async" alt="Игроки в мире Minecraft" />
+                                <span class="tag">Живой мир</span>
+                            </div>
+                            <div class="card-copy"><h3>Карта</h3><p>Найди свой уголок в большом мире.</p><span class="go" aria-hidden="true">↗</span></div>
+                        </a>
+                        <a class="card" href="wiki/">
+                            <div class="card-scene">
+                                <img src="assets/copper.webp" width="1170" height="500" loading="lazy" decoding="async" alt="Медные постройки Minecraft" />
+                                <span class="tag">База знаний</span>
+                            </div>
+                            <div class="card-copy"><h3>Вики</h3><p>Все механики, гайды и полезные мелочи.</p><span class="go" aria-hidden="true">↗</span></div>
+                        </a>
+                        <a class="card" href="https://shop.astrums.pro" target="_blank" rel="noopener">
+                            <div class="card-scene">
+                                <img src="assets/rainbow.webp" width="900" height="384" loading="lazy" decoding="async" alt="Красочный мир Minecraft" />
+                                <span class="tag">Поддержка</span>
+                            </div>
+                            <div class="card-copy"><h3>Магазин</h3><p>Проходки и поддержка твоего сервера.</p><span class="go" aria-hidden="true">↗</span></div>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -1904,6 +1902,7 @@
             <div class="wrap">
                 <div class="band">
                     <img src="assets/party.webp" width="1600" height="900" loading="lazy" decoding="async" alt="" />
+                    <p class="band-label">Большие идеи начинаются с хорошей компании</p>
                     <h2>Твой следующий горизонт</h2>
                     <p>Общайся, узнавай новости и становись частью ASTRUM.</p>
                     <a class="btn btn-discord" href="https://discord.gg/7jnWGDB2fP" rel="noopener"
