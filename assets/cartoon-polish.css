@@ -26,18 +26,23 @@ html { scroll-padding-top: 110px; }
 .ip span { border-radius: 11px; }
 .hbg-fade { height: clamp(260px, 43vh, 450px); }
 
-/* A paper sticker, built from the site's own grass-block illustration. */
-.hero-note { position: absolute; top: 120px; right: 12px; width: 244px; padding: 28px 22px 24px; border-radius: 28px; background: #fff5fc; color: #351b37; transform: rotate(5deg); text-align: center; border: 3px solid #fff; box-shadow: 0 8px 0 #e5cbe2, 0 25px 55px #0004; }
-.hero-note::before { content: ''; position: absolute; width: 76px; height: 25px; background: #e7b4efd9; border: 1px solid #fff6; left: calc(50% - 38px); top: -15px; transform: rotate(-10deg); }
-.note-icon { width: 85px; height: 85px; display: grid; place-items: center; margin: -3px auto 15px; border-radius: 25px; background: #f4dcf1; transform: rotate(-9deg); }
-.note-icon svg { width: 66px; height: 66px; filter: drop-shadow(0 5px 0 #00000014); }
-.note-sticker { display: inline-block; position: absolute; right: -18px; top: 60px; padding: 5px 11px; border-radius: 8px; background: #ff9ae8; font-size: 10px; font-weight: 700; transform: rotate(7deg); box-shadow: 0 3px 0 #c35bb0; }
-.hero-note strong { display: block; font-family: Rubik, sans-serif; font-size: 22px; line-height: 1.2; letter-spacing: -.025em; font-weight: 800; }
-.hero-note p { font-size: 12px; color: #896b87; margin-top: 11px; }
-.note-spark { position: absolute; font-size: 48px; line-height: 1; top: -29px; right: -27px; color: #ff9ae8; text-shadow: 0 3px 0 #9e397f; transform: rotate(-12deg); }
-html[data-sky='night'] .hero-note { background: #191419; color: #f8e8f5; border-color: #3e2a3d; box-shadow: 0 8px 0 #0d080d, 0 25px 55px #0008; }
-html[data-sky='night'] .hero-note p { color: #c1a7bc; }
-html[data-sky='night'] .note-icon { background: #362032; }
+/* A useful connection panel beside the main call to action. */
+.hero-copy > .ip { display: none; }
+.join-panel { position: absolute; top: 82px; right: 0; width: 300px; padding: 24px; border-radius: 24px; color: var(--ink); background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(14px); border: 1px solid color-mix(in srgb, var(--coral) 24%, var(--line)); box-shadow: 0 6px 0 color-mix(in srgb, var(--ink) 8%, var(--surface)), 0 24px 50px #0003; }
+.join-panel-heading { display: flex; align-items: center; gap: 12px; }
+.join-panel-heading img { flex: none; width: 40px; height: 40px; object-fit: contain; border-radius: 12px; }
+.join-panel-label { display: block; color: var(--coral); font-size: 10px; font-weight: 600; margin-bottom: 5px; }
+.join-panel h2 { font-size: 20px; line-height: 1.2; letter-spacing: -.025em; font-weight: 800; }
+.join-panel-meta { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 11px; padding: 19px 0 15px; }
+.join-panel-ip { display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%; border: 1px solid color-mix(in srgb, var(--coral) 30%, var(--line)); border-radius: 15px; padding: 15px; background: color-mix(in srgb, var(--coral) 7%, var(--surface)); color: var(--ink); text-align: left; cursor: pointer; transition: background .2s, border-color .2s; }
+.join-panel-ip:hover { border-color: var(--coral); background: color-mix(in srgb, var(--coral) 12%, var(--surface)); }
+.join-panel-ip small { display: block; font-family: Onest, sans-serif; font-size: 10px; color: var(--muted); margin-bottom: 5px; }
+.join-panel-ip b { font-family: Rubik, sans-serif; font-size: 25px; font-weight: 700; letter-spacing: -.035em; line-height: 1.1; }
+.join-panel-ip svg { flex: none; width: 20px; height: 20px; fill: none; stroke: var(--coral); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.join-panel > p { font-size: 10px; color: var(--muted); margin-top: 10px; }
+.join-panel > a { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); padding-top: 15px; margin-top: 20px; font-size: 12px; font-weight: 600; }
+.join-panel > a span { color: var(--coral); font-size: 18px; }
+.join-panel > a:hover { color: var(--coral); }
 
 section { padding-block: 88px; }
 #about { padding-bottom: 24px; }
@@ -104,23 +109,29 @@ footer .wrap > span { font-size: 12px; max-width: 370px; }
 
 @media (max-width: 1180px) {
   .hero-copy { width: 70%; }
-  .hero-note { width: 208px; right: 24px; top: 130px; padding: 24px 16px; }
-  .hero-note strong { font-size: 20px; }
-  .note-sticker { right: -12px; font-size: 9px; }
+  .join-panel { width: 254px; padding: 20px; top: 85px; }
+  .join-panel-heading { gap: 10px; }
+  .join-panel-heading img { width: 32px; height: 32px; }
+  .join-panel h2 { font-size: 18px; }
+  .join-panel-ip b { font-size: 23px; }
   .card-scene { height: 210px; }
 }
 @media (min-width: 1021px) and (max-width: 1180px) {
   .top:not(.solid) .wrap { gap: 12px; }
   .top:not(.solid) .brand { font-size: 20px; padding-inline: 10px; }
-  .top:not(.solid) .nav-links { gap: 3px; padding-inline: 6px; }
-  .top:not(.solid) .nav-links a { font-size: 13px; padding-inline: 11px; gap: 6px; }
+  .top:not(.solid) .nav-links a { font-size: 13px; padding-inline: 10px; }
 }
 @media (max-width: 1020px) {
   .top:not(.solid) .nav-links { background: #fffffff9; backdrop-filter: blur(20px); border-color: var(--line); }
   html[data-sky='night'] .top:not(.solid) .nav-links { background: #0c0c0cf5; }
   .hero { min-height: 790px; padding: 130px 0 145px; }
   .hero-copy { width: 100%; max-width: 720px; }
-  .hero-note { display: none; }
+  .join-panel { display: none; }
+  .hero-copy > .ip { display: inline-flex; }
+  .top .nav-links, .top.solid .nav-links { display: none; width: auto; height: auto; padding: 8px; gap: 4px; grid-template-columns: 1fr; }
+  .menu-open .top .nav-links { display: grid; }
+  .top .nav-links a, .top.solid .nav-links a { height: 44px; justify-content: flex-start; padding: 0 14px; font-size: 14px; gap: 8px; }
+  .top .nav-ic, .top.solid .nav-ic { width: 17px; height: 17px; }
   .hero h1 { font-size: clamp(64px, 10vw, 90px); max-width: 9.5em; }
   section { padding-block: 70px; }
   .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }

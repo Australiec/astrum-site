@@ -38,7 +38,6 @@
 .step:nth-child(3):hover .n { box-shadow: 0 6px 0 var(--brand-pink-depth), 0 12px 24px -8px #c53ba955; }
 .hero h1 span { color: #ff9ae8; }
 .hero h1 span::after { background: #a935c9; }
-.note-sticker { color: #351b37; }
 .hero-perks span::before { color: #ffc3ef; }
 .card:nth-child(1) .tag::before { background: #ed7cd3; box-shadow: 0 0 10px #ed7cd3; }
 .card:nth-child(2) .tag::before { background: #bd96f3; box-shadow: 0 0 10px #bd96f3; }
