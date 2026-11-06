@@ -75,7 +75,7 @@ document.getElementById('sw').addEventListener('click', () => {
   const root = document.documentElement;
   const sky = root.dataset.sky === 'night' ? 'day' : 'night';
   root.dataset.sky = sky;
-  document.querySelector('meta[name="theme-color"]').content = sky === 'night' ? '#010101' : '#fff8f0';
+  document.querySelector('meta[name="theme-color"]').content = sky === 'night' ? '#010101' : '#fff7fd';
   try { localStorage.setItem('astrum-sky', sky); } catch {}
 });
 

@@ -13,7 +13,7 @@
             content="Minecraft, майнкрафт, сервер, ванильный, Astrum, РП, полу-РП, приватный сервер, без привата, Java Edition, карта, вики, Discord"
         />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-        <meta name="theme-color" content="#fff8f0" />
+        <meta name="theme-color" content="#fff7fd" />
         <meta name="color-scheme" content="light" />
         <meta name="darkreader-lock" />
         <link rel="canonical" href="__SITE__/" />
@@ -88,29 +88,29 @@
         <style>
             :root {
                 color-scheme: light;
-                --bg: #fff8f0;
+                --bg: #fff7fd;
                 --surface: #fff;
-                --ink: #1d2333;
-                --muted: #666b7a;
-                --line: #1d23331a;
-                --coral: #ff6a45;
-                --coral-d: #e9502b;
-                --gold: #ffb829;
-                --rose: #ff7ca8;
-                --sky: #3aa8f5;
-                --leaf: #3fae55;
-                --shadow: 0 18px 50px -18px rgba(60, 36, 20, 0.28);
+                --ink: #2b1c31;
+                --muted: #78667d;
+                --line: #2b1c311a;
+                --coral: #b91b9f;
+                --coral-d: #8b117a;
+                --gold: #9253d4;
+                --rose: #ef91d7;
+                --sky: #9b62e0;
+                --leaf: #ba50b2;
+                --shadow: 0 18px 50px -18px rgba(55, 24, 62, 0.28);
             }
             html[data-sky="night"] {
                 color-scheme: dark;
                 --bg: #010101;
                 --surface: #121212;
-                --ink: #f3f1ec;
+                --ink: #f8f1f8;
                 --muted: #ababab;
                 --line: #ffffff1c;
-                --coral: #ff7a57;
-                --coral-d: #ff8e6e;
-                --gold: #ffc54d;
+                --coral: #f071db;
+                --coral-d: #f8a1e9;
+                --gold: #bd96f3;
                 --shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.6);
             }
             * {
@@ -288,15 +288,15 @@
             /* активный пункт в стиле сайта (коралловый цвет) */
             .nav-links a.active {
                 opacity: 1;
-                background: rgba(255, 106, 69, 0.22);
-                border-color: rgba(255, 106, 69, 0.55);
-                color: #ff9175;
+                background: rgba(185, 27, 159, 0.22);
+                border-color: rgba(185, 27, 159, 0.55);
+                color: #ff9ae8;
             }
             .nav-links a.active .nav-ic {
-                stroke: #ff9175;
+                stroke: #ff9ae8;
             }
             .nav-links a.active:hover {
-                background: rgba(255, 106, 69, 0.32);
+                background: rgba(185, 27, 159, 0.32);
             }
 
             /* блок действий: изначально крупный */
@@ -367,7 +367,7 @@
                 background: var(--coral);
                 color: #fff;
                 font-weight: 600;
-                box-shadow: 0 8px 20px -6px rgba(255, 106, 69, 0.6);
+                box-shadow: 0 8px 20px -6px rgba(185, 27, 159, 0.6);
                 transition:
                     height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                     padding 0.35s cubic-bezier(0.16, 1, 0.3, 1),
@@ -377,7 +377,7 @@
                     transform 0.18s;
             }
             .nav-btn:hover {
-                background: #ff7d5c;
+                background: #a1168c;
                 transform: translateY(-2px);
             }
 
@@ -441,10 +441,10 @@
                 background: rgba(255, 255, 255, 0.92);
                 backdrop-filter: blur(18px) saturate(180%);
                 -webkit-backdrop-filter: blur(18px) saturate(180%);
-                border: 1px solid rgba(29, 35, 51, 0.08);
+                border: 1px solid rgba(43, 28, 49, 0.08);
                 box-shadow:
-                    0 12px 30px -6px rgba(60, 36, 20, 0.12),
-                    0 2px 6px rgba(60, 36, 20, 0.04),
+                    0 12px 30px -6px rgba(55, 24, 62, 0.12),
+                    0 2px 6px rgba(55, 24, 62, 0.04),
                     inset 0 1px 0 rgba(255, 255, 255, 0.95);
                 color: var(--ink);
             }
@@ -476,18 +476,18 @@
             }
             .top.solid .nav-links a:hover {
                 color: var(--coral);
-                background: rgba(255, 106, 69, 0.08);
+                background: rgba(185, 27, 159, 0.08);
             }
             .top.solid .nav-links a.active {
-                background: rgba(255, 106, 69, 0.12);
-                border-color: rgba(255, 106, 69, 0.35);
+                background: rgba(185, 27, 159, 0.12);
+                border-color: rgba(185, 27, 159, 0.35);
                 color: var(--coral);
             }
             .top.solid .nav-links a.active .nav-ic {
                 stroke: var(--coral);
             }
             .top.solid .nav-links a.active:hover {
-                background: rgba(255, 106, 69, 0.18);
+                background: rgba(185, 27, 159, 0.18);
             }
 
             .top.solid .nav-actions {
@@ -505,12 +505,12 @@
                 height: 17px;
             }
             .top.solid .sw:hover {
-                background: rgba(255, 106, 69, 0.08);
+                background: rgba(185, 27, 159, 0.08);
                 color: var(--coral);
             }
             .top.solid .nav-divider {
                 height: 16px;
-                background: rgba(29, 35, 51, 0.12);
+                background: rgba(43, 28, 49, 0.12);
             }
             .top.solid .nav-btn {
                 height: 34px;
@@ -529,18 +529,18 @@
                     0 14px 34px -8px rgba(0, 0, 0, 0.5),
                     0 2px 6px rgba(0, 0, 0, 0.25),
                     inset 0 1px 0 rgba(255, 255, 255, 0.08);
-                color: #f3f1ec;
+                color: #f8f1f8;
             }
             html[data-sky="night"] .top.solid .nav-links a {
-                color: rgba(243, 241, 236, 0.8);
+                color: rgba(248, 241, 248, 0.8);
             }
             html[data-sky="night"] .top.solid .nav-links a:hover {
                 color: #fff;
                 background: rgba(255, 255, 255, 0.1);
             }
             html[data-sky="night"] .top.solid .nav-links a.active {
-                background: rgba(255, 122, 87, 0.18);
-                border-color: rgba(255, 122, 87, 0.45);
+                background: rgba(240, 113, 219, 0.18);
+                border-color: rgba(240, 113, 219, 0.45);
                 color: var(--coral);
             }
             html[data-sky="night"] .top.solid .nav-links a.active .nav-ic {
@@ -580,10 +580,10 @@
                 color: #fff;
                 box-shadow:
                     0 10px 0 -4px var(--coral-d),
-                    0 18px 30px -12px rgba(255, 106, 69, 0.7);
+                    0 18px 30px -12px rgba(185, 27, 159, 0.7);
             }
             .btn-main:hover {
-                background: #ff7d5c;
+                background: #a1168c;
             }
             .btn-light {
                 background: rgba(255, 255, 255, 0.16);
@@ -664,8 +664,8 @@
                 background: linear-gradient(
                     180deg,
                     transparent 0%,
-                    rgba(255, 248, 240, 0.25) 45%,
-                    rgba(255, 248, 240, 0.8) 80%,
+                    rgba(255, 247, 253, 0.25) 45%,
+                    rgba(255, 247, 253, 0.8) 80%,
                     var(--bg) 100%
                 );
                 background: linear-gradient(
@@ -721,7 +721,7 @@
                 text-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
             }
             .hero h1 span {
-                color: #ffd166;
+                color: #ff9ae8;
                 position: relative;
                 white-space: nowrap;
             }
@@ -772,7 +772,7 @@
             }
             .ip span {
                 background: #fff;
-                color: #1d2333;
+                color: #2b1c31;
                 padding: 8px 14px;
                 border-radius: 10px;
                 font-size: 13.5px;
@@ -780,7 +780,7 @@
                 transition: background 0.2s;
             }
             .ip:hover span {
-                background: #ffd166;
+                background: #ff9ae8;
             }
 
             section {
@@ -846,38 +846,38 @@
                 z-index: -1;
             }
             .p-green::before {
-                background: radial-gradient(circle at 25% 15%, rgba(95, 194, 90, 0.12), transparent 70%);
+                background: radial-gradient(circle at 25% 15%, rgba(195, 72, 186, 0.12), transparent 70%);
             }
             .p-rose::before {
-                background: radial-gradient(circle at 25% 15%, rgba(255, 143, 188, 0.14), transparent 70%);
+                background: radial-gradient(circle at 25% 15%, rgba(219, 114, 198, 0.14), transparent 70%);
             }
             .p-gold::before {
-                background: radial-gradient(circle at 25% 15%, rgba(255, 194, 46, 0.14), transparent 70%);
+                background: radial-gradient(circle at 25% 15%, rgba(160, 112, 214, 0.14), transparent 70%);
             }
             .p-sky::before {
-                background: radial-gradient(circle at 25% 15%, rgba(95, 213, 236, 0.14), transparent 70%);
+                background: radial-gradient(circle at 25% 15%, rgba(185, 120, 223, 0.14), transparent 70%);
             }
             .p:hover,
             .p.rv.in:hover {
                 transform: translateY(-6px);
                 box-shadow:
-                    0 22px 48px -12px rgba(60, 36, 20, 0.16),
-                    0 4px 12px -2px rgba(60, 36, 20, 0.05);
+                    0 22px 48px -12px rgba(55, 24, 62, 0.16),
+                    0 4px 12px -2px rgba(55, 24, 62, 0.05);
             }
             .p:hover::before {
                 opacity: 1;
             }
             .p-green:hover {
-                border-color: rgba(95, 194, 90, 0.4);
+                border-color: rgba(195, 72, 186, 0.4);
             }
             .p-rose:hover {
-                border-color: rgba(255, 143, 188, 0.45);
+                border-color: rgba(219, 114, 198, 0.45);
             }
             .p-gold:hover {
-                border-color: rgba(255, 194, 46, 0.45);
+                border-color: rgba(160, 112, 214, 0.45);
             }
             .p-sky:hover {
-                border-color: rgba(95, 213, 236, 0.45);
+                border-color: rgba(185, 120, 223, 0.45);
             }
 
             html[data-sky="night"] .p:hover,
@@ -899,43 +899,43 @@
                     box-shadow 0.35s ease;
             }
             .p-green .p-icon {
-                background: rgba(95, 194, 90, 0.1);
-                box-shadow: inset 0 0 0 1px rgba(95, 194, 90, 0.18);
+                background: rgba(195, 72, 186, 0.1);
+                box-shadow: inset 0 0 0 1px rgba(195, 72, 186, 0.18);
             }
             .p-rose .p-icon {
-                background: rgba(255, 143, 188, 0.12);
-                box-shadow: inset 0 0 0 1px rgba(255, 143, 188, 0.22);
+                background: rgba(219, 114, 198, 0.12);
+                box-shadow: inset 0 0 0 1px rgba(219, 114, 198, 0.22);
             }
             .p-gold .p-icon {
-                background: rgba(255, 194, 46, 0.12);
-                box-shadow: inset 0 0 0 1px rgba(255, 194, 46, 0.22);
+                background: rgba(160, 112, 214, 0.12);
+                box-shadow: inset 0 0 0 1px rgba(160, 112, 214, 0.22);
             }
             .p-sky .p-icon {
-                background: rgba(95, 213, 236, 0.12);
-                box-shadow: inset 0 0 0 1px rgba(95, 213, 236, 0.22);
+                background: rgba(185, 120, 223, 0.12);
+                box-shadow: inset 0 0 0 1px rgba(185, 120, 223, 0.22);
             }
             .p:hover .p-icon {
                 transform: translateY(-2px) scale(1.05);
             }
             .p-green:hover .p-icon {
                 box-shadow:
-                    inset 0 0 0 1px rgba(95, 194, 90, 0.35),
-                    0 8px 18px -4px rgba(95, 194, 90, 0.28);
+                    inset 0 0 0 1px rgba(195, 72, 186, 0.35),
+                    0 8px 18px -4px rgba(195, 72, 186, 0.28);
             }
             .p-rose:hover .p-icon {
                 box-shadow:
-                    inset 0 0 0 1px rgba(255, 143, 188, 0.4),
-                    0 8px 18px -4px rgba(255, 143, 188, 0.32);
+                    inset 0 0 0 1px rgba(219, 114, 198, 0.4),
+                    0 8px 18px -4px rgba(219, 114, 198, 0.32);
             }
             .p-gold:hover .p-icon {
                 box-shadow:
-                    inset 0 0 0 1px rgba(255, 194, 46, 0.4),
-                    0 8px 18px -4px rgba(255, 194, 46, 0.32);
+                    inset 0 0 0 1px rgba(160, 112, 214, 0.4),
+                    0 8px 18px -4px rgba(160, 112, 214, 0.32);
             }
             .p-sky:hover .p-icon {
                 box-shadow:
-                    inset 0 0 0 1px rgba(95, 213, 236, 0.4),
-                    0 8px 18px -4px rgba(95, 213, 236, 0.32);
+                    inset 0 0 0 1px rgba(185, 120, 223, 0.4),
+                    0 8px 18px -4px rgba(185, 120, 223, 0.32);
             }
             .p-icon svg {
                 width: 36px;
@@ -1054,12 +1054,12 @@
                 box-shadow: 0 0 10px #4ade80;
             }
             .card:nth-child(2) .tag::before {
-                background: #ffc22e;
-                box-shadow: 0 0 10px #ffc22e;
+                background: #a76adf;
+                box-shadow: 0 0 10px #a76adf;
             }
             .card:nth-child(3) .tag::before {
-                background: #ff7ca8;
-                box-shadow: 0 0 10px #ff7ca8;
+                background: #ef91d7;
+                box-shadow: 0 0 10px #ef91d7;
             }
             .card:hover .tag {
                 background: rgba(0, 0, 0, 0.65);
@@ -1093,7 +1093,7 @@
                 place-items: center;
                 font-size: 22px;
                 box-shadow:
-                    0 8px 20px -4px rgba(255, 106, 69, 0.5),
+                    0 8px 20px -4px rgba(185, 27, 159, 0.5),
                     inset 0 1px 1px rgba(255, 255, 255, 0.4);
                 transition:
                     transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
@@ -1104,7 +1104,7 @@
                 transform: scale(1.1) translateX(3px) rotate(-6deg);
                 background: var(--coral-d);
                 box-shadow:
-                    0 12px 26px -2px rgba(255, 106, 69, 0.7),
+                    0 12px 26px -2px rgba(185, 27, 159, 0.7),
                     inset 0 1px 1px rgba(255, 255, 255, 0.5);
             }
 
@@ -1143,32 +1143,32 @@
                 z-index: -1;
             }
             .step:nth-child(1)::before {
-                background: radial-gradient(circle at 20% 20%, rgba(255, 106, 69, 0.12), transparent 70%);
+                background: radial-gradient(circle at 20% 20%, rgba(185, 27, 159, 0.12), transparent 70%);
             }
             .step:nth-child(2)::before {
-                background: radial-gradient(circle at 20% 20%, rgba(255, 184, 41, 0.14), transparent 70%);
+                background: radial-gradient(circle at 20% 20%, rgba(146, 83, 212, 0.14), transparent 70%);
             }
             .step:nth-child(3)::before {
-                background: radial-gradient(circle at 20% 20%, rgba(63, 174, 85, 0.13), transparent 70%);
+                background: radial-gradient(circle at 20% 20%, rgba(186, 80, 178, 0.13), transparent 70%);
             }
             .step:hover,
             .step.rv.in:hover {
                 transform: translateY(-6px);
                 box-shadow:
-                    0 22px 48px -12px rgba(60, 36, 20, 0.16),
-                    0 4px 12px -2px rgba(60, 36, 20, 0.05);
+                    0 22px 48px -12px rgba(55, 24, 62, 0.16),
+                    0 4px 12px -2px rgba(55, 24, 62, 0.05);
             }
             .step:hover::before {
                 opacity: 1;
             }
             .step:nth-child(1):hover {
-                border-color: rgba(255, 106, 69, 0.4);
+                border-color: rgba(185, 27, 159, 0.4);
             }
             .step:nth-child(2):hover {
-                border-color: rgba(255, 184, 41, 0.45);
+                border-color: rgba(146, 83, 212, 0.45);
             }
             .step:nth-child(3):hover {
-                border-color: rgba(63, 174, 85, 0.4);
+                border-color: rgba(186, 80, 178, 0.4);
             }
 
             html[data-sky="night"] .step:hover,
@@ -1196,19 +1196,19 @@
                 background: var(--coral);
                 box-shadow:
                     0 6px 0 var(--coral-d),
-                    0 10px 22px -4px rgba(255, 106, 69, 0.4);
+                    0 10px 22px -4px rgba(185, 27, 159, 0.4);
             }
             .step:nth-child(2) .n {
                 background: var(--gold);
                 box-shadow:
-                    0 6px 0 #e49b06,
-                    0 10px 22px -4px rgba(255, 184, 41, 0.4);
+                    0 6px 0 #7134a3,
+                    0 10px 22px -4px rgba(146, 83, 212, 0.4);
             }
             .step:nth-child(3) .n {
                 background: var(--leaf);
                 box-shadow:
-                    0 6px 0 #2e8a40,
-                    0 10px 22px -4px rgba(63, 174, 85, 0.4);
+                    0 6px 0 #842680,
+                    0 10px 22px -4px rgba(186, 80, 178, 0.4);
             }
             .step:hover .n {
                 transform: translateY(-2px) scale(1.06);
@@ -1216,17 +1216,17 @@
             .step:nth-child(1):hover .n {
                 box-shadow:
                     0 6px 0 var(--coral-d),
-                    0 14px 28px -2px rgba(255, 106, 69, 0.58);
+                    0 14px 28px -2px rgba(185, 27, 159, 0.58);
             }
             .step:nth-child(2):hover .n {
                 box-shadow:
-                    0 6px 0 #e49b06,
-                    0 14px 28px -2px rgba(255, 184, 41, 0.58);
+                    0 6px 0 #7134a3,
+                    0 14px 28px -2px rgba(146, 83, 212, 0.58);
             }
             .step:nth-child(3):hover .n {
                 box-shadow:
-                    0 6px 0 #2e8a40,
-                    0 14px 28px -2px rgba(63, 174, 85, 0.58);
+                    0 6px 0 #842680,
+                    0 14px 28px -2px rgba(186, 80, 178, 0.58);
             }
             .step h3 {
                 font-size: 22px;
@@ -1306,7 +1306,7 @@
                     background-color 0.2s ease;
             }
             summary:hover::after {
-                background: rgba(255, 106, 69, 0.12);
+                background: rgba(185, 27, 159, 0.12);
             }
             details[open]:not(.is-closing) summary::after {
                 transform: rotate(45deg);
@@ -1380,7 +1380,7 @@
                         rgba(0, 0, 0, 0.3) 78%,
                         rgba(0, 0, 0, 0.15) 100%
                     ),
-                    radial-gradient(circle at 18% 50%, rgba(88, 101, 242, 0.25) 0%, transparent 60%);
+                    radial-gradient(circle at 18% 50%, rgba(133, 59, 181, 0.25) 0%, transparent 60%);
             }
             .band h2 {
                 max-width: 600px;
@@ -1399,7 +1399,7 @@
                 text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
             }
             .btn-discord {
-                background: #5865f2;
+                background: #853bb5;
                 color: #fff;
                 padding: 15px 28px;
                 border-radius: 16px;
@@ -1409,7 +1409,7 @@
                 align-items: center;
                 gap: 12px;
                 box-shadow:
-                    0 10px 24px -4px rgba(88, 101, 242, 0.55),
+                    0 10px 24px -4px rgba(133, 59, 181, 0.55),
                     inset 0 1px 1px rgba(255, 255, 255, 0.4);
                 transition:
                     transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
@@ -1417,10 +1417,10 @@
                     box-shadow 0.25s;
             }
             .btn-discord:hover {
-                background: #4752c4;
+                background: #6c2b99;
                 transform: translateY(-3px) scale(1.02);
                 box-shadow:
-                    0 14px 30px -4px rgba(88, 101, 242, 0.7),
+                    0 14px 30px -4px rgba(133, 59, 181, 0.7),
                     inset 0 1px 1px rgba(255, 255, 255, 0.5);
             }
             .btn-discord svg {
@@ -1506,8 +1506,8 @@
                     background: rgba(255, 255, 255, 0.92);
                     backdrop-filter: blur(16px);
                     -webkit-backdrop-filter: blur(16px);
-                    border: 1px solid rgba(29, 35, 51, 0.08);
-                    box-shadow: 0 10px 24px -6px rgba(60, 36, 20, 0.12);
+                    border: 1px solid rgba(43, 28, 49, 0.08);
+                    box-shadow: 0 10px 24px -6px rgba(55, 24, 62, 0.12);
                     color: var(--ink);
                     height: 46px;
                 }
@@ -1516,7 +1516,7 @@
                     background: rgba(12, 12, 12, 0.88);
                     border: 1px solid rgba(255, 255, 255, 0.12);
                     box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.4);
-                    color: #f3f1ec;
+                    color: #f8f1f8;
                 }
                 .logo {
                     width: 28px;
@@ -1536,8 +1536,8 @@
                     background: rgba(255, 255, 255, 0.98);
                     backdrop-filter: blur(20px);
                     -webkit-backdrop-filter: blur(20px);
-                    border: 1px solid rgba(29, 35, 51, 0.1);
-                    box-shadow: 0 20px 40px rgba(60, 36, 20, 0.18);
+                    border: 1px solid rgba(43, 28, 49, 0.1);
+                    box-shadow: 0 20px 40px rgba(55, 24, 62, 0.18);
                     color: var(--ink);
                     padding: 10px;
                     border-radius: 20px;
@@ -1550,7 +1550,7 @@
                     background: rgba(12, 12, 12, 0.96);
                     border: 1px solid rgba(255, 255, 255, 0.12);
                     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-                    color: #f3f1ec;
+                    color: #f8f1f8;
                 }
                 .nav-links a {
                     padding: 10px 14px;
@@ -1568,7 +1568,7 @@
                 }
                 .nav-divider {
                     display: block;
-                    background: rgba(29, 35, 51, 0.12);
+                    background: rgba(43, 28, 49, 0.12);
                 }
                 html[data-sky="night"] .nav-divider {
                     background: rgba(255, 255, 255, 0.15);
@@ -1628,6 +1628,7 @@
             }
         </style>
         <link rel="stylesheet" href="assets/cartoon-polish.css" />
+        <link rel="stylesheet" href="assets/brand-palette.css" />
     </head>
     <body>
         <canvas id="fx" aria-hidden="true"></canvas>
@@ -1732,7 +1733,7 @@
                     </div>
                     <div class="hero-note" aria-hidden="true">
                         <div class="note-icon">
-                            <svg viewBox="0 0 48 48"><path d="M24 4 42 14 24 24 6 14z" fill="#83ca67"/><path d="M6 14 24 24v20L6 34z" fill="#a5744c"/><path d="M42 14 24 24v20l18-10z" fill="#7c5438"/><path d="M6 14 24 24 42 14v5L24 29 6 19z" fill="#5aab50"/></svg>
+                            <svg viewBox="0 0 48 48"><path d="M24 4 42 14 24 24 6 14z" fill="#f48bdf"/><path d="M6 14 24 24v20L6 34z" fill="#bc3faa"/><path d="M42 14 24 24v20l18-10z" fill="#831c83"/><path d="M6 14 24 24 42 14v5L24 29 6 19z" fill="#cc46bb"/></svg>
                         </div>
                         <span class="note-sticker">Твой новый дом</span>
                         <strong>Строй. Дружи.<br>Исследуй.</strong>
@@ -1747,10 +1748,10 @@
                     <div class="p p-green">
                         <div class="p-icon">
                             <svg viewBox="0 0 48 48" aria-hidden="true">
-                                <path d="M24 4 42 14 24 24 6 14z" fill="#5fc25a" />
-                                <path d="M6 14 24 24v20L6 34z" fill="#9b6b43" />
-                                <path d="M42 14 24 24v20l18-10z" fill="#7a5233" />
-                                <path d="M6 14 24 24 42 14v5L24 29 6 19z" fill="#4aa548" />
+                                <path d="M24 4 42 14 24 24 6 14z" fill="#e671d8" />
+                                <path d="M6 14 24 24v20L6 34z" fill="#a23aa5" />
+                                <path d="M42 14 24 24v20l18-10z" fill="#75237d" />
+                                <path d="M6 14 24 24 42 14v5L24 29 6 19z" fill="#b536b3" />
                             </svg>
                         </div>
                         <h3>Свобода</h3>
@@ -1759,9 +1760,9 @@
                     <div class="p p-rose">
                         <div class="p-icon">
                             <svg viewBox="0 0 48 48" aria-hidden="true">
-                                <path d="M24 4 42 14 24 24 6 14z" fill="#ffc0d8" />
-                                <path d="M6 14 24 24v20L6 34z" fill="#ff8fbc" />
-                                <path d="M42 14 24 24v20l18-10z" fill="#ef6fa4" />
+                                <path d="M24 4 42 14 24 24 6 14z" fill="#ffc3ef" />
+                                <path d="M6 14 24 24v20L6 34z" fill="#ed7cd3" />
+                                <path d="M42 14 24 24v20l18-10z" fill="#bc4aa6" />
                             </svg>
                         </div>
                         <h3>Сообщество</h3>
@@ -1770,9 +1771,9 @@
                     <div class="p p-gold">
                         <div class="p-icon">
                             <svg viewBox="0 0 48 48" aria-hidden="true">
-                                <path d="M24 4 42 14 24 24 6 14z" fill="#ffe08a" />
-                                <path d="M6 14 24 24v20L6 34z" fill="#ffc22e" />
-                                <path d="M42 14 24 24v20l18-10z" fill="#e8a40f" />
+                                <path d="M24 4 42 14 24 24 6 14z" fill="#ddbbff" />
+                                <path d="M6 14 24 24v20L6 34z" fill="#a76adf" />
+                                <path d="M42 14 24 24v20l18-10z" fill="#8147b3" />
                             </svg>
                         </div>
                         <h3>Порядок</h3>
@@ -1781,9 +1782,9 @@
                     <div class="p p-sky">
                         <div class="p-icon">
                             <svg viewBox="0 0 48 48" aria-hidden="true">
-                                <path d="M24 4 42 14 24 24 6 14z" fill="#a8f0ff" />
-                                <path d="M6 14 24 24v20L6 34z" fill="#5fd5ec" />
-                                <path d="M42 14 24 24v20l18-10z" fill="#33b4cf" />
+                                <path d="M24 4 42 14 24 24 6 14z" fill="#dfc7ff" />
+                                <path d="M6 14 24 24v20L6 34z" fill="#b292ed" />
+                                <path d="M42 14 24 24v20l18-10z" fill="#7c4ab5" />
                             </svg>
                         </div>
                         <h3>Истории</h3>
