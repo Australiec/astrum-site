@@ -18,30 +18,9 @@
 }
 .btn-main:active { box-shadow: 0 2px 0 var(--brand-button-depth); }
 .nav-btn, .nav-btn:hover { box-shadow: none; }
-.card .go, .step:nth-child(1) .n {
-    background: var(--brand-button);
-    box-shadow: 0 4px 0 var(--brand-button-depth), inset 0 1px 0 #fff4;
-}
-.card:nth-child(2) .go, .step:nth-child(2) .n {
-    background: var(--brand-purple);
-    box-shadow: 0 4px 0 var(--brand-purple-depth), inset 0 1px 0 #fff4;
-}
-.card:nth-child(3) .go, .step:nth-child(3) .n {
-    background: var(--brand-pink);
-    box-shadow: 0 4px 0 var(--brand-pink-depth), inset 0 1px 0 #fff4;
-}
-.card:hover .go { background: var(--brand-button-hover); }
-.card:nth-child(2):hover .go { background: #6c2b99; }
-.card:nth-child(3):hover .go { background: #a92c90; }
-.step:nth-child(1):hover .n { box-shadow: 0 6px 0 var(--brand-button-depth), 0 12px 24px -8px #b91b9f55; }
-.step:nth-child(2):hover .n { box-shadow: 0 6px 0 var(--brand-purple-depth), 0 12px 24px -8px #853bb555; }
-.step:nth-child(3):hover .n { box-shadow: 0 6px 0 var(--brand-pink-depth), 0 12px 24px -8px #c53ba955; }
 .hero h1 span { color: #ff9ae8; }
 .hero h1 span::after { background: #a935c9; }
 .hero-perks span::before { color: #ffc3ef; }
-.card:nth-child(1) .tag::before { background: #ed7cd3; box-shadow: 0 0 10px #ed7cd3; }
-.card:nth-child(2) .tag::before { background: #bd96f3; box-shadow: 0 0 10px #bd96f3; }
-.card:nth-child(3) .tag::before { background: #ef91d7; box-shadow: 0 0 10px #ef91d7; }
 .btn-discord { background: var(--brand-purple); }
 .btn-discord:hover { background: #6c2b99; }
 .prose .btn { background: var(--brand-button); color: #fff; }

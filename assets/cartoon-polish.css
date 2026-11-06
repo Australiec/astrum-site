@@ -51,10 +51,10 @@ section { padding-block: 88px; }
 .p { padding: 27px 24px 25px; border-radius: 26px; box-shadow: 0 6px 0 color-mix(in srgb, var(--ink) 7%, var(--surface)), 0 18px 36px -24px #37183e50; }
 .p::before { opacity: .8; }
 .p::after { content: '✦'; position: absolute; top: 23px; right: 23px; color: var(--tile-color); opacity: .45; font-size: 24px; line-height: 1; transform: rotate(12deg); }
-.p-green { --tile-color: #c348ba; }
-.p-rose { --tile-color: #db72c6; }
-.p-gold { --tile-color: #a070d6; }
-.p-sky { --tile-color: #b978df; }
+.p-green { --tile-color: #6aaf56; }
+.p-rose { --tile-color: #e37d9d; }
+.p-gold { --tile-color: #d2a23d; }
+.p-sky { --tile-color: #56b5c8; }
 .p-icon { border-radius: 18px; margin-bottom: 23px; }
 .p h3 { font-size: 21px; }
 .p p { font-size: 14px; line-height: 1.7; }
@@ -76,11 +76,12 @@ h2 { font-size: clamp(34px, 4vw, 52px); letter-spacing: -.03em; line-height: 1.1
 .card-copy { position: relative; flex: 1; padding: 26px 24px 29px; border-top: 1px solid var(--line); }
 .card h3 { font-size: 29px; text-shadow: none; letter-spacing: -.03em; padding-right: 45px; }
 .card p { max-width: 80%; font-size: 14px; line-height: 1.6; opacity: 1; color: var(--muted); text-shadow: none; margin-top: 10px; }
-.card .go { width: 42px; height: 42px; right: 22px; top: 26px; bottom: auto; border-radius: 14px; font-size: 22px; box-shadow: 0 4px 0 color-mix(in srgb, var(--coral) 78%, #45113f), inset 0 1px 0 #fff4; }
-.card:nth-child(2) .go { background: #8c4bc5; box-shadow: 0 4px 0 #66308f, inset 0 1px 0 #fff4; }
-.card:nth-child(3) .go { background: #c53ba9; box-shadow: 0 4px 0 #902076, inset 0 1px 0 #fff4; }
+.card .go { width: 42px; height: 42px; right: 22px; top: 26px; bottom: auto; border-radius: 14px; font-size: 22px; box-shadow: 0 4px 0 color-mix(in srgb, var(--coral) 78%, #4d271c), inset 0 1px 0 #fff4; }
+.card:nth-child(2) .go { background: #e8ad3d; box-shadow: 0 4px 0 #bd8422, inset 0 1px 0 #fff4; }
+.card:nth-child(3) .go { background: #d77da0; box-shadow: 0 4px 0 #a95878, inset 0 1px 0 #fff4; }
 .card:hover .go { transform: translateX(2px) rotate(-7deg); }
 
+.cards, .steps { --coral: #ff6a45; --coral-d: #e9502b; --gold: #ffb829; --leaf: #3fae55; }
 .steps { gap: 24px; }
 .step { padding: 30px 28px; border-radius: 26px; box-shadow: 0 5px 0 color-mix(in srgb, var(--ink) 7%, var(--surface)); }
 .step::before { opacity: .45; }
