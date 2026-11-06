@@ -140,7 +140,7 @@ function build() {
                         "@type": "Organization",
                         name: "ASTRUM",
                         url: `${SITE}/`,
-                        logo: { "@type": "ImageObject", url: `${SITE}/assets/logo.webp` },
+                        logo: { "@type": "ImageObject", url: `${SITE}/assets/logo.webp?v=20261106-2` },
                     },
                 },
                 {
