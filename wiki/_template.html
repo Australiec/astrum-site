@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru-RU" data-sky="day">
+<html lang="ru-RU" data-sky="night">
     <head>
         <meta charset="utf-8" />
 
@@ -7,7 +7,8 @@
         <title>{{TITLE}}</title>
         <meta name="description" content="{{DESC}}" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-        <meta name="theme-color" content="#fff7fd" />
+        <meta name="theme-color" content="#010101" />
+        <meta name="color-scheme" content="dark light" />
         <link rel="canonical" href="{{CANON}}" />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="ASTRUM" />
@@ -33,15 +34,17 @@
                 try {
                     s = localStorage.getItem("astrum-sky");
                 } catch (e) {}
-                if (!s) {
-                    var h = new Date().getHours();
-                    s = h >= 7 && h < 19 ? "day" : "night";
+                if (s !== "night" && s !== "day") {
+                    s = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "day" : "night";
                 }
                 document.documentElement.dataset.sky = s;
+                var tc = document.querySelector('meta[name="theme-color"]');
+                if (tc) tc.content = s === "night" ? "#010101" : "#fff7fd";
             })();
         </script>
         <style>
             :root {
+                color-scheme: light;
                 --bg: #fff7fd;
                 --panel: #fff;
                 --ink: #2b1c31;
@@ -56,6 +59,7 @@
                 --ease: cubic-bezier(0.16, 1, 0.3, 1);
             }
             html[data-sky="night"] {
+                color-scheme: dark;
                 --bg: #010101;
                 --panel: #121212;
                 --ink: #f8f1f8;
@@ -778,10 +782,27 @@
             $("#sw").onclick = () => {
                 const s = root.dataset.sky === "night" ? "day" : "night";
                 root.dataset.sky = s;
+                const tc = $('meta[name="theme-color"]');
+                if (tc) tc.content = s === "night" ? "#010101" : "#fff7fd";
                 try {
                     localStorage.setItem("astrum-sky", s);
                 } catch (e) {}
             };
+            if (window.matchMedia) {
+                const mq = matchMedia("(prefers-color-scheme: light)");
+                if (mq.addEventListener) {
+                    mq.addEventListener("change", e => {
+                        try {
+                            const saved = localStorage.getItem("astrum-sky");
+                            if (saved === "night" || saved === "day") return;
+                        } catch (err) {}
+                        const s = e.matches ? "day" : "night";
+                        root.dataset.sky = s;
+                        const tc = $('meta[name="theme-color"]');
+                        if (tc) tc.content = s === "night" ? "#010101" : "#fff7fd";
+                    });
+                }
+            }
             $("#menu").onclick = () => document.body.classList.toggle("open");
             document.querySelectorAll(".prose img").forEach(
                 i =>

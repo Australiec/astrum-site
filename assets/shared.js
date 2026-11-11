@@ -75,9 +75,25 @@ document.getElementById('sw').addEventListener('click', () => {
   const root = document.documentElement;
   const sky = root.dataset.sky === 'night' ? 'day' : 'night';
   root.dataset.sky = sky;
-  document.querySelector('meta[name="theme-color"]').content = sky === 'night' ? '#010101' : '#fff7fd';
+  const tc = document.querySelector('meta[name="theme-color"]');
+  if (tc) tc.content = sky === 'night' ? '#010101' : '#fff7fd';
   try { localStorage.setItem('astrum-sky', sky); } catch {}
 });
+if (window.matchMedia) {
+  const mq = matchMedia('(prefers-color-scheme: light)');
+  if (mq.addEventListener) {
+    mq.addEventListener('change', e => {
+      try {
+        const saved = localStorage.getItem('astrum-sky');
+        if (saved === 'night' || saved === 'day') return;
+      } catch {}
+      const sky = e.matches ? 'day' : 'night';
+      document.documentElement.dataset.sky = sky;
+      const tc = document.querySelector('meta[name="theme-color"]');
+      if (tc) tc.content = sky === 'night' ? '#010101' : '#fff7fd';
+    });
+  }
+}
 
 /* мягкое появление блоков при прокрутке */
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {

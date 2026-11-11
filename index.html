@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru-RU" data-sky="day">
+<html lang="ru-RU" data-sky="night">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,8 +13,8 @@
             content="Minecraft, майнкрафт, сервер, ванильный, Astrum, РП, полу-РП, приватный сервер, без привата, Java Edition, карта, вики, Discord"
         />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-        <meta name="theme-color" content="#fff7fd" />
-        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#010101" />
+        <meta name="color-scheme" content="dark light" />
         <meta name="darkreader-lock" />
         <link rel="canonical" href="__SITE__/" />
         <meta property="og:type" content="website" />
@@ -68,14 +68,18 @@
             }
         </script>
         <script>
-            /* тема: по умолчанию светлая (день). переключается по кнопке */
+            /* тема: по умолчанию тема устройства, если не определена — тёмная (night). переключается по кнопке */
             (function () {
                 var s = null;
                 try {
                     s = localStorage.getItem("astrum-sky");
                 } catch (e) {}
-                if (!s || (s !== "night" && s !== "day")) s = "day";
+                if (s !== "night" && s !== "day") {
+                    s = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "day" : "night";
+                }
                 document.documentElement.dataset.sky = s;
+                var tc = document.querySelector('meta[name="theme-color"]');
+                if (tc) tc.content = s === "night" ? "#010101" : "#fff7fd";
                 var l = document.createElement("link");
                 l.rel = "preload";
                 l.as = "image";
