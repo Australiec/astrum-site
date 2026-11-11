@@ -3,7 +3,7 @@ id: links
 title: Ссылки
 group: Начало
 order: 3
-cover: https://astrums.pro/links.avif
+cover: /assets/wiki/links.avif
 ---
 
 ## Полезные ссылки

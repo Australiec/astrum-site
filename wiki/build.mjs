@@ -17,7 +17,7 @@ const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&
 const slugify = t =>
     t
         .toLowerCase()
-        .replace(/[^\p{L}\p{N}]+/g, "-")
+        .replace(/[^\p{L}\p{N}]+/gu, "-")
         .replace(/^-|-$/g, "");
 
 function build() {
@@ -70,6 +70,7 @@ function build() {
         const W = isHome(p) ? "" : "../",
             UP = isHome(p) ? "../" : "../../";
         const link = s => (s === "info" ? W || "./" : `${W}${s}/`);
+        const assetUrl = src => (/^(https?:|data:|\/\/|#)/i.test(src) ? src : UP + src.replace(/^\/+/, ""));
 
         const toc = [],
             used = new Set();
@@ -100,7 +101,10 @@ function build() {
             .parse(md)
             .replace(/<table>/g, '<div class="tw"><table>')
             .replace(/<\/table>/g, "</table></div>")
-            .replace(/<img /g, '<img loading="lazy" decoding="async" ')
+            .replace(/<img\s+([^>]*?)src="([^"]+)"([^>]*)>/g, (_, before, src, after) => {
+                const attrs = `${before}src="${esc(assetUrl(src))}"${after}`;
+                return /loading=/i.test(attrs) ? `<img ${attrs}>` : `<img loading="lazy" decoding="async" ${attrs}>`;
+            })
             .replace(/<a href="(https?:[^"]+)"/g, '<a href="$1" target="_blank" rel="noopener"');
 
         const desc = esc(
@@ -168,7 +172,7 @@ function build() {
             .replace(
                 "{{COVER}}",
                 p.cover
-                    ? `<div class="cover"><img src="${esc(p.cover)}" width="1200" height="457" fetchpriority="high" decoding="async" alt=""></div>`
+                    ? `<div class="cover"><img src="${esc(assetUrl(p.cover))}" width="1200" height="457" fetchpriority="high" decoding="async" alt=""></div>`
                     : "",
             )
             .replace("{{BODY}}", () => html)

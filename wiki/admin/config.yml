@@ -3,7 +3,7 @@
 
 backend:
     name: github
-    repo: Tr1ton4ikus/site-astrum
+    repo: Australiec/astrum-site
     branch: main
     # base_url: https://ВАШ-WORKER.workers.dev   # адрес Cloudflare Worker из wiki/admin/oauth-worker.js — без него вход через GitHub на GitHub Pages не работает
 
@@ -11,10 +11,10 @@ backend:
 local_backend: true
 
 locale: ru
-site_url: https://tr1ton4ikus.github.io/site-astrum
-display_url: https://tr1ton4ikus.github.io/site-astrum/wiki/
-media_folder: wiki/uploads
-public_folder: /wiki/uploads
+site_url: https://astrums.pro
+display_url: https://astrums.pro/wiki/
+media_folder: assets/wiki
+public_folder: /assets/wiki
 
 collections:
     - name: articles

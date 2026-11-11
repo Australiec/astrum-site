@@ -7,21 +7,21 @@
 
 | | Адрес | Вход |
 |---|---|---|
-| Decap CMS | `https://tr1ton4ikus.github.io/site-astrum/wiki/admin/` | «Войти через GitHub» (нужен Worker, см. ниже) |
-| Запасной вход | `https://tr1ton4ikus.github.io/site-astrum/wiki/admin/token.html` | токен GitHub (работает сразу) |
+| Decap CMS | `https://astrums.pro/wiki/admin/` | «Войти через GitHub» (нужен Worker, см. ниже) |
+| Запасной вход | `https://astrums.pro/wiki/admin/token.html` | токен GitHub (работает сразу) |
 
-Данные: репозиторий `Tr1ton4ikus/site-astrum`, ветка `main`.
+Данные: репозиторий `Australiec/astrum-site`, ветка `main`.
 
 ### Запасной вход по токену (1 минута)
 GitHub → Settings → Developer settings → Personal access tokens → Fine-grained → Generate:
-доступ только к репозиторию `site-astrum`, право **Contents: Read and write**. Токен вставляется в редактор.
+доступ только к репозиторию `astrum-site`, право **Contents: Read and write**. Токен вставляется в редактор.
 
 ### Вход в Decap через GitHub (один раз)
 Decap на GitHub Pages нужен небольшой посредник для OAuth — бесплатный Cloudflare Worker.
-1. GitHub → Settings → Developer settings → OAuth Apps → New: Homepage `https://tr1ton4ikus.github.io/site-astrum/`,
+1. GitHub → Settings → Developer settings → OAuth Apps → New: Homepage `https://astrums.pro/`,
    Callback URL `https://<имя-worker>.workers.dev/callback`. Запомните Client ID и создайте Client secret.
 2. Cloudflare → Workers → Create: вставьте код из `wiki/admin/oauth-worker.js`.
-   Variables: `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (secret), `ALLOWED_ORIGIN` = `https://tr1ton4ikus.github.io`.
+   Variables: `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (secret), `ALLOWED_ORIGIN` = `https://astrums.pro`.
 3. В `wiki/admin/config.yml` раскомментируйте `base_url` и впишите адрес Worker. Готово.
 
 ## Как писать статью

@@ -3,7 +3,7 @@ id: how-play
 title: Как играть
 group: Начало
 order: 2
-cover: https://astrums.pro/how-play.avif
+cover: /assets/wiki/how-play.avif
 ---
 
 ## Как зайти на сервер
@@ -14,4 +14,4 @@ cover: https://astrums.pro/how-play.avif
 
 Если по какой-то причине мы отклоним заявку, вы можете купить проходку, чтобы в любом случае зайти играть на сервер. Покупая проходку, вы помогаете серверу в развитии.
 
-[Заполнить заявку](http://discord.gg/7jnWGDB2fP){.btn} [Купить проходку](https://shop.astrums.pro/){.btn .ghost}
+[Заполнить заявку](https://discord.gg/7jnWGDB2fP){.btn} [Купить проходку](https://shop.astrums.pro/){.btn .ghost}
