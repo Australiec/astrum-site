@@ -1631,8 +1631,32 @@
                     justify-content: space-between;
                 }
             }
+            html.sky-snap *,
+            html.sky-snap *::before,
+            html.sky-snap *::after {
+                transition: none !important;
+            }
+            html.sky-xfade::view-transition-old(root),
+            html.sky-xfade::view-transition-new(root) {
+                animation-duration: 0.65s;
+                animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+            }
+            html.sky-circle::view-transition-old(root),
+            html.sky-circle::view-transition-new(root) {
+                animation: none;
+                mix-blend-mode: normal;
+            }
+            html.sky-circle::view-transition-old(root) {
+                z-index: 1;
+            }
+            html.sky-circle::view-transition-new(root) {
+                z-index: 9999;
+            }
             @media (prefers-reduced-motion: reduce) {
-                * {
+                *,
+                ::view-transition-group(*),
+                ::view-transition-old(*),
+                ::view-transition-new(*) {
                     transition: none !important;
                     animation: none !important;
                     scroll-behavior: auto !important;

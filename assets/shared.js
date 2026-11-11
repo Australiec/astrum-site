@@ -70,28 +70,136 @@ const onScroll = () => {
 };
 addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-/* Переключатель день / ночь. */
-document.getElementById('sw').addEventListener('click', () => {
+/* Переключатель день / ночь и плавная синхронизация с темой устройства. */
+{
   const root = document.documentElement;
-  const sky = root.dataset.sky === 'night' ? 'day' : 'night';
-  root.dataset.sky = sky;
-  const tc = document.querySelector('meta[name="theme-color"]');
-  if (tc) tc.content = sky === 'night' ? '#010101' : '#fff7fd';
-  try { localStorage.setItem('astrum-sky', sky); } catch {}
-});
-if (window.matchMedia) {
-  const mq = matchMedia('(prefers-color-scheme: light)');
-  if (mq.addEventListener) {
-    mq.addEventListener('change', e => {
-      try {
-        const saved = localStorage.getItem('astrum-sky');
-        if (saved === 'night' || saved === 'day') return;
-      } catch {}
-      const sky = e.matches ? 'day' : 'night';
-      document.documentElement.dataset.sky = sky;
-      const tc = document.querySelector('meta[name="theme-color"]');
-      if (tc) tc.content = sky === 'night' ? '#010101' : '#fff7fd';
+  const sw = document.getElementById('sw');
+  const loadedHero = new Set();
+  let skyJob = 0;
+  let pendingSky = null;
+
+  const setSkyImmediate = sky => {
+    pendingSky = null;
+    root.dataset.sky = sky;
+    const tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.content = sky === 'night' ? '#010101' : '#fff7fd';
+  };
+
+  const applySkySnap = sky => {
+    root.classList.add('sky-snap');
+    setSkyImmediate(sky);
+    void root.offsetHeight;
+    root.classList.remove('sky-snap');
+  };
+
+  const preloadHero = (sky, timeoutMs) => {
+    const hbg = document.querySelector('.hbg');
+    if (!hbg) return Promise.resolve();
+    const rect = hbg.getBoundingClientRect();
+    if (rect.bottom <= 0 || rect.top >= innerHeight) return Promise.resolve();
+    const src = sky === 'day' ? 'assets/hero-day-hq.webp' : 'assets/hero-night-hq.webp';
+    if (loadedHero.has(src)) return Promise.resolve();
+    return new Promise(resolve => {
+      let done = false;
+      const finish = ok => {
+        if (done) return;
+        done = true;
+        clearTimeout(timer);
+        if (ok) loadedHero.add(src);
+        resolve();
+      };
+      const timer = setTimeout(() => finish(false), timeoutMs);
+      const img = new Image();
+      const markReady = () => {
+        if (img.decode) img.decode().then(() => finish(true), () => finish(true));
+        else finish(true);
+      };
+      img.onload = markReady;
+      img.onerror = () => finish(false);
+      img.src = src;
+      if (img.complete && img.naturalWidth > 0) markReady();
     });
+  };
+
+  const transitionSky = async (sky, origin) => {
+    const job = ++skyJob;
+    pendingSky = sky;
+
+    const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!document.startViewTransition || document.hidden || reduceMotion) {
+      pendingSky = null;
+      root.classList.remove('sky-circle', 'sky-xfade');
+      setSkyImmediate(sky);
+      return;
+    }
+
+    await preloadHero(sky, origin ? 600 : 1200);
+    if (job !== skyJob) return;
+
+    if (root.dataset.sky === sky) {
+      setSkyImmediate(sky);
+      return;
+    }
+
+    if (document.hidden) {
+      root.classList.remove('sky-circle', 'sky-xfade');
+      setSkyImmediate(sky);
+      return;
+    }
+
+    root.classList.remove('sky-circle', 'sky-xfade');
+    root.classList.add(origin ? 'sky-circle' : 'sky-xfade');
+
+    let vt;
+    try {
+      vt = document.startViewTransition(() => {
+        if (job === skyJob) applySkySnap(sky);
+      });
+    } catch {
+      root.classList.remove('sky-circle', 'sky-xfade');
+      setSkyImmediate(sky);
+      return;
+    }
+
+    if (origin) {
+      vt.ready.then(() => {
+        if (job !== skyJob) return;
+        const r = Math.hypot(Math.max(origin.x, innerWidth - origin.x), Math.max(origin.y, innerHeight - origin.y));
+        root.animate(
+          { clipPath: [`circle(0px at ${origin.x}px ${origin.y}px)`, `circle(${r}px at ${origin.x}px ${origin.y}px)`] },
+          { duration: 580, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', pseudoElement: '::view-transition-new(root)' }
+        );
+      }).catch(() => {});
+    }
+
+    vt.finished.finally(() => {
+      if (job === skyJob) root.classList.remove('sky-circle', 'sky-xfade');
+    });
+  };
+
+  if (sw) {
+    sw.addEventListener('click', e => {
+      const current = pendingSky || root.dataset.sky;
+      const sky = current === 'night' ? 'day' : 'night';
+      try { localStorage.setItem('astrum-sky', sky); } catch {}
+      const hasPtr = e && e.detail > 0 && (e.clientX || e.clientY);
+      const rect = sw.getBoundingClientRect();
+      const origin = hasPtr ? { x: e.clientX, y: e.clientY } : { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+      transitionSky(sky, origin);
+    });
+  }
+
+  if (window.matchMedia) {
+    const mq = matchMedia('(prefers-color-scheme: light)');
+    if (mq.addEventListener) {
+      mq.addEventListener('change', e => {
+        try {
+          const saved = localStorage.getItem('astrum-sky');
+          if (saved === 'night' || saved === 'day') return;
+        } catch {}
+        transitionSky(e.matches ? 'day' : 'night', null);
+      });
+    }
   }
 }
 
