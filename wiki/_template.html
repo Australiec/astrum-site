@@ -499,6 +499,28 @@
                 text-align: right;
                 grid-column: 2;
             }
+            .wiki-foot {
+                margin-top: 40px;
+                padding-top: 22px;
+                border-top: 1px solid var(--line);
+                color: var(--muted);
+                font-size: 12.5px;
+                line-height: 1.65;
+            }
+            .foot-info a {
+                color: var(--ink);
+                font-weight: 600;
+                text-decoration: underline;
+                text-decoration-color: color-mix(in srgb, var(--coral) 55%, transparent);
+                text-underline-offset: 2px;
+                transition:
+                    color 0.2s,
+                    text-decoration-color 0.2s;
+            }
+            .foot-info a:hover {
+                color: var(--coral);
+                text-decoration-color: var(--coral);
+            }
 
             aside.toc {
                 position: sticky;
@@ -742,6 +764,12 @@
                     <div class="prose">{{BODY}}</div>
                 </article>
                 <nav class="pn" aria-label="Другие статьи">{{PN}}</nav>
+                <footer class="wiki-foot">
+                    <span class="foot-info">
+                        Бесплатный ванильный сервер Майнкрафт · IP: astrums.pro · Не является продуктом Mojang<br />
+                        Разработка сайта: <a href="https://t.me/epartis" target="_blank" rel="noopener">Epartis</a>, <a href="https://github.com/Australiec" target="_blank" rel="noopener">Australiec</a>
+                    </span>
+                </footer>
             </main>
 
             <aside class="toc" id="toc" aria-label="Содержание">{{TOC}}</aside>

@@ -258,6 +258,9 @@ html[data-sky="night"] .ip-drop-menu { box-shadow: 0 20px 48px -8px rgba(0, 0, 0
 
 .faq-content a { color: var(--coral); text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
 footer ul { flex-wrap: wrap; gap: 16px 22px; }
+footer .wrap > span { max-width: 440px; line-height: 1.65; }
+.foot-info a { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--coral) 55%, transparent); text-underline-offset: 2px; transition: color .2s, text-decoration-color .2s; }
+.foot-info a:hover { color: var(--coral); text-decoration-color: var(--coral); }
 
 @media (max-width: 1020px) {
   .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }

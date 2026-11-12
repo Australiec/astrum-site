@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="ru-RU" data-sky="night">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>404 — Страница не найдена | ASTRUM</title>
+        <meta name="description" content="Страница не найдена на сайте ванильного сервера Майнкрафт ASTRUM. Перейдите на главную, карту мира или в вики." />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="theme-color" content="#010101" />
+        <meta name="color-scheme" content="dark light" />
+        <meta name="darkreader-lock" />
+        <link rel="icon" href="/favicon.ico?v=20261106-2" sizes="16x16 32x32 48x48 64x64" />
+        <link rel="icon" href="/assets/logo.webp?v=20261112-1" type="image/webp" />
+        <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=20261106-2" />
+        <script>
+            (function () {
+                var s = null;
+                try {
+                    s = localStorage.getItem("astrum-sky");
+                } catch (e) {}
+                if (s !== "night" && s !== "day") {
+                    s = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "day" : "night";
+                }
+                document.documentElement.dataset.sky = s;
+                var tc = document.querySelector('meta[name="theme-color"]');
+                if (tc) tc.content = s === "night" ? "#010101" : "#fff7fd";
+            })();
+        </script>
+        <link rel="stylesheet" href="/assets/fonts/cartoon.css" />
+        <link rel="stylesheet" href="/assets/site-header.css" />
+        <link rel="stylesheet" href="/assets/brand-palette.css" />
+        <style>
+            :root {
+                color-scheme: light;
+                --bg: #fff7fd;
+                --surface: #fff;
+                --ink: #2b1c31;
+                --muted: #78667d;
+                --line: #2b1c311a;
+                --coral: #b91b9f;
+                --coral-d: #8b117a;
+                --shadow: 0 18px 50px -18px rgba(55, 24, 62, 0.25);
+            }
+            html[data-sky="night"] {
+                color-scheme: dark;
+                --bg: #010101;
+                --surface: #121212;
+                --ink: #f8f1f8;
+                --muted: #ababab;
+                --line: #ffffff1c;
+                --coral: #f071db;
+                --coral-d: #f8a1e9;
+                --shadow: 0 22px 60px -20px rgba(0, 0, 0, 0.72);
+            }
+            * {
+                box-sizing: border-box;
+                margin: 0;
+            }
+            html,
+            body {
+                overflow-x: clip;
+                background: var(--bg);
+                color: var(--ink);
+            }
+            body {
+                min-height: 100svh;
+                display: flex;
+                flex-direction: column;
+                font-family:
+                    Onest,
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    sans-serif;
+                line-height: 1.6;
+                font-size: 16px;
+            }
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+            #fx {
+                position: fixed;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                pointer-events: none;
+            }
+            main,
+            footer {
+                position: relative;
+                z-index: 2;
+            }
+            main {
+                flex: 1;
+                display: grid;
+                place-items: center;
+                padding: 104px 24px 64px;
+            }
+            .err-card {
+                position: relative;
+                width: min(740px, 100%);
+                padding: 44px 40px 38px;
+                border-radius: 30px;
+                background: color-mix(in srgb, var(--surface) 94%, transparent);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid var(--line);
+                box-shadow:
+                    0 7px 0 color-mix(in srgb, var(--ink) 7%, var(--surface)),
+                    var(--shadow);
+                isolation: isolate;
+                overflow: hidden;
+            }
+            .err-card::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+                pointer-events: none;
+                background:
+                    radial-gradient(circle at 14% 12%, rgba(185, 27, 159, 0.14), transparent 55%),
+                    radial-gradient(circle at 88% 82%, rgba(146, 83, 212, 0.12), transparent 55%);
+            }
+            html[data-sky="night"] .err-card::before {
+                background:
+                    radial-gradient(circle at 14% 12%, rgba(240, 113, 219, 0.16), transparent 55%),
+                    radial-gradient(circle at 88% 82%, rgba(189, 150, 243, 0.12), transparent 55%);
+            }
+            .err-top {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                margin-bottom: 18px;
+            }
+            .err-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 6px 12px;
+                border-radius: 9px;
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.09em;
+                text-transform: uppercase;
+                color: var(--ink);
+                background: color-mix(in srgb, var(--coral) 12%, var(--surface));
+                border: 1px solid color-mix(in srgb, var(--coral) 25%, transparent);
+            }
+            .err-badge::before {
+                content: "✦";
+                color: var(--coral);
+                font-size: 12px;
+            }
+            .err-path {
+                font-size: 13px;
+                font-weight: 600;
+                color: var(--muted);
+                padding: 5px 11px;
+                border-radius: 9px;
+                background: color-mix(in srgb, var(--ink) 5%, var(--surface));
+                border: 1px solid var(--line);
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .err-code {
+                font-family: Rubik, system-ui, sans-serif;
+                font-weight: 900;
+                font-size: clamp(64px, 14vw, 112px);
+                line-height: 0.94;
+                letter-spacing: -0.04em;
+                color: var(--coral);
+                margin-bottom: 12px;
+            }
+            .err-card h1 {
+                font-family: Rubik, system-ui, sans-serif;
+                font-weight: 900;
+                font-size: clamp(26px, 4.4vw, 38px);
+                line-height: 1.12;
+                letter-spacing: -0.025em;
+                margin-bottom: 14px;
+            }
+            .err-desc {
+                color: var(--muted);
+                font-size: 16px;
+                line-height: 1.65;
+                max-width: 560px;
+            }
+            .err-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-top: 26px;
+            }
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 9px;
+                height: 48px;
+                padding: 0 22px;
+                border-radius: 15px;
+                font-family: inherit;
+                font-size: 15px;
+                font-weight: 600;
+                border: 0;
+                cursor: pointer;
+                transition:
+                    transform 0.18s,
+                    background 0.2s,
+                    box-shadow 0.2s,
+                    border-color 0.2s;
+            }
+            .btn:hover {
+                transform: translateY(-2px);
+            }
+            .btn:active {
+                transform: translateY(1px);
+            }
+            .btn-main {
+                color: #fff;
+                background: var(--brand-button, var(--coral));
+            }
+            .btn-ghost {
+                background: color-mix(in srgb, var(--ink) 5%, var(--surface));
+                color: var(--ink);
+                border: 1px solid var(--line);
+            }
+            .btn-ghost:hover {
+                border-color: var(--coral);
+                background: color-mix(in srgb, var(--coral) 10%, var(--surface));
+            }
+            .err-links {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+                margin-top: 28px;
+                padding-top: 24px;
+                border-top: 1px solid var(--line);
+            }
+            .err-tile {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                padding: 15px 17px;
+                border-radius: 18px;
+                background: color-mix(in srgb, var(--ink) 3%, var(--surface));
+                border: 1px solid var(--line);
+                transition:
+                    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                    border-color 0.2s,
+                    background 0.2s;
+            }
+            .err-tile:hover {
+                transform: translateY(-2px);
+                border-color: color-mix(in srgb, var(--coral) 45%, var(--line));
+                background: color-mix(in srgb, var(--coral) 8%, var(--surface));
+            }
+            .err-tile strong {
+                font-size: 15px;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+            }
+            .err-tile strong span {
+                color: var(--coral);
+                font-size: 16px;
+            }
+            .err-tile small {
+                color: var(--muted);
+                font-size: 13px;
+                line-height: 1.45;
+            }
+            footer {
+                border-top: 1px solid var(--line);
+                padding: 24px 0;
+                color: var(--muted);
+                font-size: 13.5px;
+            }
+            footer .wrap {
+                width: min(1180px, 100% - 48px);
+                margin-inline: auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 12px 24px;
+            }
+            footer .wrap > .foot-info {
+                font-size: 12.5px;
+                line-height: 1.65;
+            }
+            .foot-info a {
+                color: var(--ink);
+                font-weight: 600;
+                text-decoration: underline;
+                text-decoration-color: color-mix(in srgb, var(--coral) 55%, transparent);
+                text-underline-offset: 2px;
+                transition:
+                    color 0.2s,
+                    text-decoration-color 0.2s;
+            }
+            .foot-info a:hover {
+                color: var(--coral);
+                text-decoration-color: var(--coral);
+            }
+            footer ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 14px 20px;
+                list-style: none;
+                padding: 0;
+            }
+            footer a:hover {
+                color: var(--coral);
+            }
+            .toast {
+                position: fixed;
+                bottom: 24px;
+                left: 50%;
+                transform: translate(-50%, 90px);
+                background: var(--ink);
+                color: var(--bg);
+                padding: 12px 22px;
+                border-radius: 12px;
+                font-weight: 600;
+                font-size: 14.5px;
+                transition: transform 0.3s;
+                z-index: 130;
+            }
+            .toast.show {
+                transform: translate(-50%, 0);
+            }
+            @media (max-width: 620px) {
+                main {
+                    padding: 86px 16px 40px;
+                }
+                .err-card {
+                    padding: 28px 20px 24px;
+                    border-radius: 24px;
+                }
+                .err-actions {
+                    flex-direction: column;
+                }
+                .btn {
+                    width: 100%;
+                }
+                .err-links {
+                    grid-template-columns: 1fr;
+                }
+                footer .wrap {
+                    width: calc(100% - 32px);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="fx" aria-hidden="true"></canvas>
+
+        <header class="top solid" id="site-nav">
+            <div class="wrap">
+                <a href="/" class="brand" aria-label="ASTRUM — главная">
+                    <img class="logo" src="/assets/logo.webp?v=20261112-1" width="27" height="27" alt="" />
+                    <span>ASTRUM</span>
+                </a>
+                <ul class="nav-links" id="main-menu">
+                    <li>
+                        <a href="/">
+                            <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m3 9.5 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                <path d="M9 21.5v-9h6v9" />
+                            </svg>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/map/">
+                            <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true">
+                                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
+                                <path d="M9 3v15M15 6v15" />
+                            </svg>
+                            <span>Карта</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/wiki/">
+                            <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="M12 16v-4M12 8h.01" />
+                            </svg>
+                            <span>Вики</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/#faq">
+                            <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01" />
+                            </svg>
+                            <span>Вопросы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://shop.astrums.pro" target="_blank" rel="noopener">
+                            <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+                                <path d="M3 6h18M16 10a4 4 0 0 1-8 0" />
+                            </svg>
+                            <span>Магазин</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="sw" id="sw" aria-label="Переключить день и ночь" title="День / ночь">
+                        <svg class="sun" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="4" />
+                            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+                        </svg>
+                        <svg class="moon" viewBox="0 0 24 24">
+                            <path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z" />
+                        </svg>
+                    </button>
+                    <span class="nav-divider" aria-hidden="true"></span>
+                    <a class="btn btn-main btn-sm nav-btn" href="/#how-play">Начать игру</a>
+                    <button class="burger" aria-label="Открыть меню" aria-controls="main-menu" aria-expanded="false"></button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="err-card" aria-labelledby="err-title">
+                <div class="err-top">
+                    <span class="err-badge" id="err-badge">Чанк не загрузился</span>
+                    <code class="err-path" id="err-path" hidden></code>
+                </div>
+                <div class="err-code" id="err-code">404</div>
+                <h1 id="err-title">Такой страницы нет в мире ASTRUM</h1>
+                <p class="err-desc" id="err-desc">
+                    Возможно, ссылка устарела, страница переехала в другой раздел вики или адрес набран с опечаткой. Вернитесь на главную или выберите нужный раздел ниже.
+                </p>
+
+                <div class="err-actions">
+                    <a class="btn btn-main" href="/">На главную →</a>
+                    <button type="button" class="btn btn-ghost" id="btn-back">← Назад</button>
+                    <button type="button" class="btn btn-ghost" id="btn-ip">IP: astrums.pro</button>
+                </div>
+
+                <div class="err-links">
+                    <a class="err-tile" href="/wiki/how-play/">
+                        <strong>Как начать играть <span>→</span></strong>
+                        <small>Вход без заявок и лицензии на Java 1.21–26.3 (основная 26.2)</small>
+                    </a>
+                    <a class="err-tile" href="/wiki/">
+                        <strong>База знаний (Вики) <span>→</span></strong>
+                        <small>Механики, команды, крафты, рецепты Brewery и правила Энда</small>
+                    </a>
+                    <a class="err-tile" href="/map/">
+                        <strong>Онлайн-карта мира <span>→</span></strong>
+                        <small>Города, спавн, границы измерений и свободные территории</small>
+                    </a>
+                    <a class="err-tile" href="https://discord.gg/7jnWGDB2fP" target="_blank" rel="noopener">
+                        <strong>Discord-сервер <span>↗</span></strong>
+                        <small>Подтверждение 4-значного кода, новости и помощь администрации</small>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="wrap">
+                <span class="foot-info">
+                    Бесплатный ванильный сервер Майнкрафт · IP: astrums.pro · Не является продуктом Mojang<br />
+                    Разработка сайта: <a href="https://t.me/epartis" target="_blank" rel="noopener">Epartis</a>, <a href="https://github.com/Australiec" target="_blank" rel="noopener">Australiec</a>
+                </span>
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/map/">Карта</a></li>
+                    <li><a href="/wiki/">Вики</a></li>
+                    <li><a href="https://shop.astrums.pro" target="_blank" rel="noopener">Магазин</a></li>
+                    <li><a href="https://discord.gg/7jnWGDB2fP" target="_blank" rel="noopener">Discord</a></li>
+                    <li><a href="https://t.me/ast_mc" target="_blank" rel="noopener">Telegram</a></li>
+                </ul>
+            </div>
+        </footer>
+
+        <div class="toast" id="toast" role="status">IP скопирован</div>
+
+        <script src="/assets/fx.js" defer></script>
+        <script src="/assets/site-header.js" defer></script>
+        <script>
+            (function () {
+                const ERRORS = {
+                    "400": ["Некорректный запрос", "Неверный формат запроса", "Похоже, адрес запроса сформирован с ошибкой. Попробуйте открыть нужный раздел с главной страницы."],
+                    "403": ["Доступ закрыт", "Нет доступа к этой странице", "Эта страница или папка закрыта для просмотра. Выберите один из открытых разделов сайта ниже."],
+                    "404": ["Чанк не загрузился", "Такой страницы нет в мире ASTRUM", "Возможно, ссылка устарела, страница переехала в другой раздел вики или адрес набран с опечаткой. Вернитесь на главную или выберите нужный раздел ниже."],
+                    "429": ["Слишком быстро", "Слишком много запросов", "Вы отправляли запросы слишком часто. Подождите несколько секунд и обновите страницу."],
+                    "500": ["Сбой на стороне сервера", "Внутренняя ошибка сервера", "Что-то пошло не так при обработке запроса. Попробуйте обновить страницу через минуту или зайдите позже."],
+                    "502": ["Ошибка шлюза", "Временный сбой соединения", "Сервер сейчас не ответил вовремя. Попробуйте обновить страницу чуть позже."],
+                    "503": ["Технические работы", "Сервис временно недоступен", "Сейчас идут технические работы или сервер перегружен. Загляните в Discord за статусом."]
+                };
+
+                const params = new URLSearchParams(location.search);
+                const rawCode = (params.get("code") || location.hash.replace(/^#/, "")).trim();
+                const code = ERRORS[rawCode] ? rawCode : "404";
+                const info = ERRORS[code];
+                if (code !== "404") {
+                    document.getElementById("err-code").textContent = code;
+                    document.getElementById("err-badge").textContent = info[0];
+                    document.getElementById("err-title").textContent = info[1];
+                    document.getElementById("err-desc").textContent = info[2];
+                    document.title = code + " — " + info[1] + " | ASTRUM";
+                }
+
+                const pathEl = document.getElementById("err-path");
+                const shownPath = location.pathname && location.pathname !== "/404.html" ? location.pathname : "";
+                if (shownPath) {
+                    pathEl.textContent = shownPath;
+                    pathEl.hidden = false;
+                }
+
+                document.getElementById("btn-back").addEventListener("click", function () {
+                    if (history.length > 1 && document.referrer.startsWith(location.origin)) {
+                        history.back();
+                    } else {
+                        location.href = "/";
+                    }
+                });
+
+                const toast = document.getElementById("toast");
+                let toastTimer;
+                document.getElementById("btn-ip").addEventListener("click", async function () {
+                    const ip = "astrums.pro";
+                    let copied = false;
+                    try {
+                        await navigator.clipboard.writeText(ip);
+                        copied = true;
+                    } catch {
+                        const t = document.createElement("textarea");
+                        t.value = ip;
+                        t.style.cssText = "position:fixed;left:-9999px";
+                        document.body.appendChild(t);
+                        t.select();
+                        try {
+                            copied = document.execCommand("copy");
+                        } catch {}
+                        t.remove();
+                    }
+                    toast.textContent = copied ? "IP astrums.pro скопирован — до встречи в игре" : "IP сервера: astrums.pro";
+                    toast.classList.add("show");
+                    clearTimeout(toastTimer);
+                    toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
+                });
+            })();
+        </script>
+    </body>
+</html>
