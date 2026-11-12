@@ -179,9 +179,9 @@ footer .wrap > span { font-size: 12px; max-width: 370px; }
   .hero-perks span { font-size: 10px; padding: 5px 8px; }
   .cta { gap: 12px; margin-top: 27px; }
   .cta .btn { flex: 1; padding-inline: 15px; height: 52px; font-size: 13px; white-space: nowrap; }
-  .ip { padding-left: 12px; font-size: 12px; max-width: 365px; }
-  .ip b { font-size: 16px; }
-  .ip span { font-size: 12px; padding: 9px 10px; }
+  .ip { padding: 6px 6px 6px 14px; gap: 10px; font-size: 13px; color: rgba(255, 255, 255, .75); max-width: 100%; justify-content: flex-start; }
+  .ip b { font-size: 16px; color: #fff; }
+  .ip span { margin-left: auto; font-size: 12.5px; padding: 10px 14px; }
   .hbg-fade { height: 260px; }
   .pr { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; margin-top: -48px; }
   .p { padding: 20px 16px; border-radius: 21px; }
