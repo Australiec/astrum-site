@@ -5,6 +5,7 @@
 //          node wiki/build.mjs --stamp    (в CI: подставить адрес сайта из site.json в index.html и map/index.html)
 // Адрес сайта берётся из site.json — при подключении своего домена поменяйте его там.
 import { Marked } from "marked";
+import { execFileSync } from "node:child_process";
 import { mkdirSync, readdirSync, readFileSync, statSync, watch, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -19,6 +20,36 @@ const slugify = t =>
         .toLowerCase()
         .replace(/[^\p{L}\p{N}]+/gu, "-")
         .replace(/^-|-$/g, "");
+
+function getLastModified(relPath) {
+    const absPath = join(root, relPath);
+    try {
+        const dirty = execFileSync("git", ["status", "--porcelain", "--", relPath], {
+            cwd: root,
+            encoding: "utf8",
+            stdio: ["ignore", "pipe", "ignore"],
+        }).trim();
+        if (!dirty) {
+            const iso = execFileSync("git", ["log", "-1", "--format=%cI", "--", relPath], {
+                cwd: root,
+                encoding: "utf8",
+                stdio: ["ignore", "pipe", "ignore"],
+            }).trim();
+            if (iso) {
+                const d = new Date(iso);
+                if (!Number.isNaN(d.getTime())) return d;
+            }
+        }
+    } catch {}
+    return statSync(absPath).mtime;
+}
+
+function trimDesc(text, max = 155) {
+    if (text.length <= max) return text;
+    const cut = text.slice(0, max);
+    const trimmed = cut.replace(/\s+\S*$/, "");
+    return (trimmed.length > 80 ? trimmed : cut).replace(/[.,;:—–-]+$/, "");
+}
 
 function build() {
     const SITE = (process.env.SITE_URL || JSON.parse(read(join(root, "site.json"))).url).replace(/\/$/, "");
@@ -48,7 +79,7 @@ function build() {
                 cover: meta.cover || "",
                 description: meta.description || "",
                 body: m ? src.slice(m[0].length) : src,
-                mtime: statSync(join(contentDir, f)).mtime,
+                mtime: getLastModified(`wiki/content/${f}`),
             };
         })
         .sort((a, b) => a.order - b.order);
@@ -108,10 +139,11 @@ function build() {
             .replace(/<a href="(https?:[^"]+)"/g, '<a href="$1" target="_blank" rel="noopener"');
 
         const desc = esc(
-            (
+            trimDesc(
                 p.description ||
-                plain(p.body.split(/\n\n/).find(x => x.trim() && !/^(#|!\[|\||-|>)/.test(x.trim())) || p.body)
-            ).slice(0, 155),
+                    plain(p.body.split(/\n\n/).find(x => x.trim() && !/^(#|!\[|\||-|>)/.test(x.trim())) || p.body),
+                155,
+            ),
         );
         const title = `${p.title} | Вики ASTRUM`;
         const idx = pages.indexOf(p),
@@ -205,11 +237,10 @@ function build() {
         join(here, "search.json"),
         JSON.stringify(pages.map(p => ({ s: p.slug, t: p.title, x: plain(p.body).slice(0, 30000) }))),
     );
-    const day = d => d.toISOString().slice(0, 10),
-        newest = pages.reduce((a, p) => (p.mtime > a ? p.mtime : a), new Date(0));
+    const day = d => d.toISOString().slice(0, 10);
     const urls = [
-        [`${SITE}/`, day(new Date())],
-        [`${SITE}/map/`, day(new Date())],
+        [`${SITE}/`, day(getLastModified("index.html"))],
+        [`${SITE}/map/`, day(getLastModified("map/index.html"))],
         ...pages.map(p => [urlOf(p), day(p.mtime)]),
     ];
     writeFileSync(

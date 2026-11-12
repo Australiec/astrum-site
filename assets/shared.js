@@ -5,10 +5,11 @@ const IP = 'astrums.pro';
 const toast = document.getElementById('toast');
 let toastTimer;
 document.querySelectorAll('[data-ip]').forEach(b => b.addEventListener('click', async () => {
+  const targetIp = b.dataset.ip || IP;
   let copied = false;
-  try { await navigator.clipboard.writeText(IP); copied = true; } catch {
+  try { await navigator.clipboard.writeText(targetIp); copied = true; } catch {
     const input = document.createElement('textarea');
-    input.value = IP;
+    input.value = targetIp;
     input.style.cssText = 'position:fixed;left:-9999px';
     document.body.appendChild(input);
     input.select();
@@ -16,11 +17,36 @@ document.querySelectorAll('[data-ip]').forEach(b => b.addEventListener('click', 
     input.remove();
     b.focus({ preventScroll: true });
   }
-  toast.textContent = copied ? 'IP скопирован — до встречи в игре' : 'IP сервера: ' + IP;
+  toast.textContent = copied ? `IP ${targetIp} скопирован — до встречи в игре` : 'IP сервера: ' + targetIp;
   toast.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
 }));
+
+/* выпадающий список запасных IP */
+document.querySelectorAll('.ip-drop').forEach(drop => {
+  const btn = drop.querySelector('.ip-drop-btn');
+  const menu = drop.querySelector('.ip-drop-menu');
+  if (!btn || !menu) return;
+  const setOpen = open => {
+    btn.setAttribute('aria-expanded', String(open));
+    menu.hidden = !open;
+  };
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    setOpen(menu.hidden);
+  });
+  menu.querySelectorAll('[data-ip]').forEach(item => item.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('click', e => {
+    if (!drop.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !menu.hidden) {
+      setOpen(false);
+      btn.focus();
+    }
+  });
+});
 
 /* мобильное меню */
 const burger = document.querySelector('.burger');
