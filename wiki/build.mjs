@@ -176,7 +176,7 @@ function build() {
                         "@type": "Organization",
                         name: "ASTRUM",
                         url: `${SITE}/`,
-                        logo: { "@type": "ImageObject", url: `${SITE}/assets/logo.webp?v=20261106-2` },
+                        logo: { "@type": "ImageObject", url: `${SITE}/assets/logo.webp?v=20261112-1` },
                     },
                 },
                 {
@@ -251,6 +251,75 @@ function build() {
         join(root, "robots.txt"),
         `User-agent: *\nAllow: /\nDisallow: /wiki/admin/\nSitemap: ${SITE}/sitemap.xml\n`,
     );
+
+    /* файлы для ИИ (llms.txt и llms-full.txt) */
+    const wikiUrlAbs = s => (s === "info" ? `${SITE}/wiki/` : `${SITE}/wiki/${s}/`);
+    const cleanMdForLlm = md =>
+        md
+            .replace(/\[([^\]]+)\]\(([^)]+)\)\{\.btn(?: \.ghost)?\}/g, "[$1]($2)")
+            .replace(/\]\(#\/([a-z0-9-]+)\)/g, (_, s) => `](${wikiUrlAbs(s)})`)
+            .replace(/!\[([^\]]*)\]\((?!https?:|data:|\/\/)([^)]+)\)/g, (_, alt, src) => `![${alt}](${SITE}/${src.replace(/^\/+/, "")})`)
+            .trim();
+
+    const summaryHints = {
+        links: "Официальные ссылки проекта: основной и правительственный Discord, Telegram, YouTube, Modrinth, HotMC и магазин.",
+        commands: "Полный список доступных команд сервера: /co i, /settings, /skin set, /groups, /sit, /lay, /crawl, /disc, /premium и другие.",
+    };
+    const pageSummaries = pages
+        .map(p => {
+            const firstPara =
+                p.description ||
+                summaryHints[p.slug] ||
+                plain(
+                    p.body
+                        .split(/\n\n/)
+                        .find(x => x.trim() && !/^(#|!\[|\||-|>|\*\*)/.test(x.trim())) || p.body,
+                );
+            return `- [${p.title}](${wikiUrlAbs(p.slug)}): ${trimDesc(firstPara, 155)}`;
+        })
+        .join("\n");
+
+    const llmsTxt = `# ASTRUM
+
+> Бесплатный открытый ванильный полу-РП сервер Майнкрафт (Java Edition 1.21–26.3, основная версия 26.2) без приватов, заявок, проходок и обязательной лицензии. Стабильные 20 TPS, города, парламент, ваниль+ механики и система варки напитков Brewery.
+
+## Ключевые факты для быстрого ответа
+
+- **IP-адрес:** \`astrums.pro\` (запасные: \`mc.astrums.pro\`, \`game.astrums.pro\`, \`play.astrums.pro\`)
+- **Версия игры:** Minecraft Java Edition, основная \`26.2\`, вход открыт с \`1.21\` по \`26.3\`
+- **Лицензия:** не требуется (поддерживаются пиратские и лицензионные клиенты; для лицензии есть \`/premium\`)
+- **Вход и вайтлист:** полностью бесплатный и открытый, **без заявок и проходок** — нужно зайти на сервер, зарегистрироваться и отправить 4-значный код в специальный канал Discord
+- **Приваты и порядок:** приватов нет, защита от грифа и краж — логирование CoreProtect (\`/co i\`, \`/co near\`) и модерация
+- **Геймплей и механики:** ванильный спавнрейт, разрешены фермы и дюпы ТНТ/рельс/ковров, разделение TPS по регионам (20 TPS), расширяемый игроками барьер мира, желе опыта вместо стандартной починки у жителей, переработанный Энд и бумажные элитры, 19 рецептов Brewery, голосовой чат PlasmoVoice и эмоции Emotecraft
+- **Донат:** только косметическая и социальная поддержка (подписка PLUS на \`shop.astrums.pro\`), без pay-to-win преимуществ
+- **Моды:** не обязательны (есть готовая необязательная сборка на Modrinth)
+
+## Разделы сайта и ресурсы
+
+- [Главная страница](${SITE}/): обзор сервера, быстрый старт, особенности и FAQ
+- [Онлайн-карта мира](${SITE}/map/): интерактивная карта городов, спавна и границ измерений
+- [Магазин поддержки](https://shop.astrums.pro/): добровольная поддержка проекта
+- [Полная документация для ИИ (llms-full.txt)](${SITE}/llms-full.txt): весь текст вики-базы знаний в одном Markdown-файле
+
+## База знаний (Вики)
+
+${pageSummaries}
+
+## Сообщество и ссылки
+
+- [Discord-сервер](https://discord.gg/7jnWGDB2fP)
+- [Telegram-канал](https://t.me/ast_mc)
+- [Сборка модов на Modrinth](https://modrinth.com/modpack/astrum)
+- [YouTube проекта](https://www.youtube.com/@Astrum_mc)
+- [Страница на HotMC](https://hotmc.ru/minecraft-server-261288)
+`;
+    writeFileSync(join(root, "llms.txt"), llmsTxt);
+
+    const llmsFullTxt = `${llmsTxt.trim()}\n\n---\n\n# Подробная база знаний ASTRUM\n\n${pages
+        .map(p => `## ${p.title}\n\nURL: ${wikiUrlAbs(p.slug)}\n\n${cleanMdForLlm(p.body)}`)
+        .join("\n\n---\n\n")}\n`;
+    writeFileSync(join(root, "llms-full.txt"), llmsFullTxt);
+
     console.log(`Вики: ${pages.length} страниц · ${SITE}`);
 
     if (process.argv.includes("--stamp")) {
