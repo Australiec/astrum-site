@@ -80,10 +80,15 @@
       vt.ready
         .then(() => {
           if (job !== skyJob) return;
-          const r = Math.hypot(Math.max(origin.x, innerWidth - origin.x), Math.max(origin.y, innerHeight - origin.y));
+          const vv = window.visualViewport;
+          const vw = Math.max(innerWidth, document.documentElement.clientWidth, vv ? vv.width : 0);
+          const vh = Math.max(innerHeight, document.documentElement.clientHeight, vv ? vv.height : 0);
+          const ox = Math.max(0, Math.min(vw, origin.x));
+          const oy = Math.max(0, Math.min(vh, origin.y));
+          const r = Math.ceil(Math.hypot(Math.max(ox, vw - ox), Math.max(oy, vh - oy + 180)) * 1.15);
           root.animate(
-            { clipPath: [`circle(0px at ${origin.x}px ${origin.y}px)`, `circle(${r}px at ${origin.x}px ${origin.y}px)`] },
-            { duration: 580, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', pseudoElement: '::view-transition-new(root)' }
+            { clipPath: [`circle(0px at ${ox}px ${oy}px)`, `circle(${r}px at ${ox}px ${oy}px)`] },
+            { duration: 620, easing: 'cubic-bezier(0.32, 0.72, 0.24, 1)', fill: 'forwards', pseudoElement: '::view-transition-new(root)' }
           );
         })
         .catch(() => {});

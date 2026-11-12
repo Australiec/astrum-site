@@ -39,7 +39,9 @@
 
   function frame(now) {
     const dt = Math.min((now - last) / 16.7, 3) || 1; last = now;
-    draw(now / 1000, dt);
+    if (!root.classList.contains('sky-circle') && !root.classList.contains('sky-xfade')) {
+      draw(now / 1000, dt);
+    }
     raf = requestAnimationFrame(frame);
   }
   const start = () => { if (!raf && !calm) { last = performance.now(); raf = requestAnimationFrame(frame); } };
