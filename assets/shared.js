@@ -118,12 +118,14 @@ addEventListener('scroll', onScroll, { passive: true }); onScroll();
     root.classList.remove('sky-snap');
   };
 
+  const heroSrc = sky => `assets/hero-${sky}-${window.matchMedia && matchMedia('(max-width: 768px)').matches ? 'mobile' : 'hq'}.webp`;
+
   const preloadHero = (sky, timeoutMs) => {
     const hbg = document.querySelector('.hbg');
     if (!hbg) return Promise.resolve();
     const rect = hbg.getBoundingClientRect();
     if (rect.bottom <= 0 || rect.top >= innerHeight) return Promise.resolve();
-    const src = sky === 'day' ? 'assets/hero-day-hq.webp' : 'assets/hero-night-hq.webp';
+    const src = heroSrc(sky);
     if (loadedHero.has(src)) return Promise.resolve();
     return new Promise(resolve => {
       let done = false;

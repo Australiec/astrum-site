@@ -17,7 +17,8 @@
     w = innerWidth; h = innerHeight;
     c.width = w * dpr; c.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const area = w * h;
-    petals = Array.from({ length: Math.round(Math.min(34, area / 30000)) }, () => petal(true));
+    const cap = w < 768 ? 16 : 34;
+    petals = Array.from({ length: Math.round(Math.min(cap, area / 30000)) }, () => petal(true));
   }
 
   function draw(t, dt) {
@@ -44,7 +45,14 @@
   const start = () => { if (!raf && !calm) { last = performance.now(); raf = requestAnimationFrame(frame); } };
   const stop = () => { cancelAnimationFrame(raf); raf = 0; };
 
-  size(); draw(0, 0); start();
+  size();
+  if (calm) {
+    draw(0, 0);
+  } else {
+    const kick = () => { if (!raf && !document.hidden) start(); };
+    if ('requestIdleCallback' in window) requestIdleCallback(kick, { timeout: 600 });
+    else setTimeout(kick, 180);
+  }
   addEventListener('resize', () => { size(); if (calm) draw(0, 0); });
   document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
   new MutationObserver(() => { if (calm) draw(0, 0); }).observe(root, { attributes: true, attributeFilter: ['data-sky'] });
