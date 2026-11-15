@@ -5,10 +5,16 @@
   "scripts": {
     "build": "node wiki/build.mjs",
     "build:layout": "node layout/sync.mjs",
-    "dev": "node wiki/dev.mjs"
+    "dev": "node wiki/dev.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
+    "indexnow:all": "node scripts/indexnow.mjs --all"
   },
   "dependencies": {
     "marked": "^12.0.2",
     "skinview3d": "^3.4.2"
+  },
+  "devDependencies": {
+    "image-size": "^2.1.0",
+    "sharp": "^0.35.5"
   }
 }

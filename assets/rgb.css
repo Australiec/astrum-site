@@ -23,8 +23,8 @@
 /* Настоящий Minecraft шрифт с поддержкой кириллицы (русских букв) */
 @font-face {
   font-family: 'Minecraft';
-  src: url(fonts/MinecraftDefault-Regular.ttf) format('truetype'),
-       url(fonts/MinecraftRegular.woff) format('woff');
+  src: url(fonts/MinecraftDefault-Regular.woff2) format('woff2'),
+       url(fonts/MinecraftDefault-Regular.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -32,8 +32,8 @@
 
 @font-face {
   font-family: 'Minecraft';
-  src: url(fonts/MinecraftDefault-Bold.ttf) format('truetype'),
-       url(fonts/MinecraftBold.woff) format('woff');
+  src: url(fonts/MinecraftDefault-Bold.woff2) format('woff2'),
+       url(fonts/MinecraftDefault-Bold.ttf) format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;

@@ -335,6 +335,9 @@
                 font-weight: 400;
                 transition: opacity 0.2s;
             }
+            .anc::after {
+                content: "#";
+            }
             .prose p,
             .prose li {
                 color: color-mix(in srgb, var(--ink) 86%, var(--bg));
@@ -680,7 +683,7 @@
 
         {{FOOTER}}
 
-        <div class="lb" id="lb"><img alt="" /></div>
+        <div class="lb" id="lb"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Просмотр изображения" /></div>
         <script src="{{UP}}assets/site-header.js" defer></script>
         <script>
             const W = "{{W}}",
@@ -792,23 +795,46 @@
                 }
             });
         </script>
-        <!-- Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2EKC6P77BN"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-2EKC6P77BN');
-        </script>
-        <!-- Yandex.Metrika counter -->
-        <script>
-            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < t.length; j++) {if (t[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-            ym(110548865, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
-        </script>
-        <noscript><div><img src="https://mc.yandex.ru/watch/110548865" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- LAYOUT:ANALYTICS -->
+        <!-- Analytics (Google Analytics G-2EKC6P77BN & Yandex.Metrika 110548865) -->
+<script>
+    (function () {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+        window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); };
+
+        var loaded = false;
+        function init() {
+            if (loaded) return;
+            loaded = true;
+            ["pointerdown", "keydown", "scroll", "touchstart"].forEach(function (ev) {
+                window.removeEventListener(ev, init, true);
+            });
+            window.gtag("js", new Date());
+            window.gtag("config", "G-2EKC6P77BN");
+            var g = document.createElement("script");
+            g.async = true;
+            g.src = "https://www.googletagmanager.com/gtag/js?id=G-2EKC6P77BN";
+            document.head.appendChild(g);
+
+            (function (m, e, t, r, i, k, a) {
+                m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+                m[i].l = 1 * new Date();
+                k = e.createElement(t);
+                a = e.getElementsByTagName(t)[0];
+                k.async = 1;
+                k.src = r;
+                a.parentNode.insertBefore(k, a);
+            })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+            window.ym(110548865, "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
+        }
+        ["pointerdown", "keydown", "scroll", "touchstart"].forEach(function (ev) {
+            window.addEventListener(ev, init, { once: true, passive: true, capture: true });
+        });
+        window.addEventListener("load", function () { setTimeout(init, 3500); }, { once: true });
+    })();
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/110548865" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- /LAYOUT:ANALYTICS -->
     </body>
 </html>

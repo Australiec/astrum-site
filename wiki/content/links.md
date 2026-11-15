@@ -4,6 +4,7 @@ title: Ссылки
 group: Начало
 order: 3
 cover: /assets/wiki/links.avif
+description: Официальные ссылки проекта ASTRUM (Аструм): Discord-серверы, Telegram-канал, YouTube, сборка модов на Modrinth, мониторинг и магазин.
 ---
 
 ## Полезные ссылки
@@ -24,3 +25,8 @@ cover: /assets/wiki/links.avif
 - YouTube-канал владельца — [youtube.com/@Austral_](https://youtube.com/@Austral_)
 - YouTube-канал сервера — [youtube.com/@Astrum_mc](https://www.youtube.com/@Astrum_mc)
 - Telegram-канал — [t.me/ast_mc](https://t.me/ast_mc)
+
+### Связь с администрацией
+
+- Discord-сервер (тикеты поддержки) — [discord.gg/7jnWGDB2fP](https://discord.gg/7jnWGDB2fP)
+- Электронная почта — [astrum_mc@proton.me](mailto:astrum_mc@proton.me)

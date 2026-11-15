@@ -3,22 +3,44 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Карта мира | ASTRUM</title>
-        <meta name="description" content="Живая карта мира ASTRUM: города, спавн, граница мира и игроки онлайн." />
+        <title>Карта мира — ASTRUM · Ванильный сервер Minecraft 26.2</title>
+        <meta name="description" content="Живая интерактивная карта мира Майнкрафт сервера ASTRUM (Аструм): города, спавн, динамические границы измерений и игроки онлайн." />
         <meta name="robots" content="index, follow" />
         <meta name="theme-color" content="#010101" />
         <meta name="color-scheme" content="dark light" />
         <link rel="canonical" href="https://astrums.pro/map/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="ASTRUM" />
-        <meta property="og:title" content="Карта мира | ASTRUM" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:title" content="Карта мира — ASTRUM · Ванильный сервер Minecraft 26.2" />
         <meta
             property="og:description"
-            content="Живая карта мира ASTRUM: города, спавн, граница мира и игроки онлайн."
+            content="Живая интерактивная карта мира Майнкрафт сервера ASTRUM (Аструм): города, спавн, динамические границы измерений и игроки онлайн."
         />
         <meta property="og:url" content="https://astrums.pro/map/" />
         <meta property="og:image" content="https://astrums.pro/assets/og.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Карта мира — ASTRUM · Ванильный сервер Minecraft 26.2" />
+        <meta name="twitter:description" content="Живая интерактивная карта мира Майнкрафт сервера ASTRUM (Аструм): города, спавн, динамические границы измерений и игроки онлайн." />
+        <meta name="twitter:image" content="https://astrums.pro/assets/og.jpg" />
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Карта мира — ASTRUM · Ванильный сервер Minecraft 26.2",
+            "url": "https://astrums.pro/map/",
+            "description": "Живая интерактивная карта мира Майнкрафт сервера ASTRUM (Аструм): города, спавн, динамические границы измерений и координаты.",
+            "inLanguage": "ru-RU",
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": "ASTRUM",
+                "alternateName": ["Аструм", "Astrum"],
+                "url": "https://astrums.pro/"
+            }
+        }
+        </script>
         <link rel="icon" href="../favicon.ico?v=20261106-2" sizes="16x16 32x32 48x48 64x64" />
         <link rel="icon" href="../assets/logo.webp?v=20261106-2" type="image/webp" />
         <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=20261106-2" />
@@ -479,23 +501,46 @@
             })();
         </script>
         <script src="../assets/site-header.js" defer></script>
-        <!-- Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2EKC6P77BN"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-2EKC6P77BN');
-        </script>
-        <!-- Yandex.Metrika counter -->
-        <script>
-            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < t.length; j++) {if (t[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-            ym(110548865, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
-        </script>
-        <noscript><div><img src="https://mc.yandex.ru/watch/110548865" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- LAYOUT:ANALYTICS -->
+        <!-- Analytics (Google Analytics G-2EKC6P77BN & Yandex.Metrika 110548865) -->
+<script>
+    (function () {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+        window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); };
+
+        var loaded = false;
+        function init() {
+            if (loaded) return;
+            loaded = true;
+            ["pointerdown", "keydown", "scroll", "touchstart"].forEach(function (ev) {
+                window.removeEventListener(ev, init, true);
+            });
+            window.gtag("js", new Date());
+            window.gtag("config", "G-2EKC6P77BN");
+            var g = document.createElement("script");
+            g.async = true;
+            g.src = "https://www.googletagmanager.com/gtag/js?id=G-2EKC6P77BN";
+            document.head.appendChild(g);
+
+            (function (m, e, t, r, i, k, a) {
+                m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+                m[i].l = 1 * new Date();
+                k = e.createElement(t);
+                a = e.getElementsByTagName(t)[0];
+                k.async = 1;
+                k.src = r;
+                a.parentNode.insertBefore(k, a);
+            })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+            window.ym(110548865, "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
+        }
+        ["pointerdown", "keydown", "scroll", "touchstart"].forEach(function (ev) {
+            window.addEventListener(ev, init, { once: true, passive: true, capture: true });
+        });
+        window.addEventListener("load", function () { setTimeout(init, 3500); }, { once: true });
+    })();
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/110548865" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- /LAYOUT:ANALYTICS -->
     </body>
 </html>

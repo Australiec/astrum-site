@@ -3,20 +3,49 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Генератор RGB текста — ASTRUM</title>
+        <title>Генератор RGB текста и градиентов — ASTRUM · Minecraft 26.2</title>
         <meta
             name="description"
-            content="Интерактивный генератор RGB текста и градиентов для Minecraft сервера ASTRUM: живой WYSIWYG ввод, шрифты Small Caps, MiniMessage, EssentialsX и экспорт в 1 клик."
+            content="Интерактивный генератор RGB текста и градиентов Майнкрафт для сервера ASTRUM (Аструм): живой WYSIWYG ввод, шрифты Small Caps, MiniMessage, EssentialsX и экспорт в 1 клик."
         />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
         <link rel="canonical" href="https://astrums.pro/rgb/" />
-        <meta property="og:title" content="Генератор RGB текста — ASTRUM" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ASTRUM" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:title" content="Генератор RGB текста и градиентов — ASTRUM · Minecraft 26.2" />
         <meta
             property="og:description"
-            content="Интерактивный генератор RGB текста и градиентов для Minecraft сервера ASTRUM: живой WYSIWYG ввод, шрифты Small Caps, MiniMessage, EssentialsX и экспорт в 1 клик."
+            content="Интерактивный генератор RGB текста и градиентов Майнкрафт для сервера ASTRUM (Аструм): живой WYSIWYG ввод, шрифты Small Caps, MiniMessage, EssentialsX и экспорт в 1 клик."
         />
         <meta property="og:url" content="https://astrums.pro/rgb/" />
         <meta property="og:image" content="https://astrums.pro/assets/og.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Генератор RGB текста и градиентов — ASTRUM · Minecraft 26.2" />
+        <meta
+            name="twitter:description"
+            content="Интерактивный генератор RGB текста и градиентов Майнкрафт для сервера ASTRUM (Аструм): живой WYSIWYG ввод, шрифты Small Caps, MiniMessage, EssentialsX и экспорт в 1 клик."
+        />
+        <meta name="twitter:image" content="https://astrums.pro/assets/og.jpg" />
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Генератор RGB текста и градиентов Minecraft — ASTRUM",
+            "url": "https://astrums.pro/rgb/",
+            "applicationCategory": "UtilitiesApplication",
+            "operatingSystem": "All",
+            "description": "Интерактивный онлайн-генератор RGB текста, градиентов и форматирования Minecraft: MiniMessage, EssentialsX, Small Caps и экспорт в 1 клик.",
+            "inLanguage": "ru-RU",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "RUB"
+            }
+        }
+        </script>
         <meta name="theme-color" content="#010101" />
         <meta name="color-scheme" content="dark light" />
         <meta name="darkreader-lock" />
@@ -39,7 +68,7 @@
         </script>
         <link rel="preload" as="font" href="../assets/fonts/rubik.woff2" type="font/woff2" crossorigin />
         <link rel="preload" as="font" href="../assets/fonts/onest.woff2" type="font/woff2" crossorigin />
-        <link rel="preload" as="font" href="../assets/fonts/MinecraftDefault-Regular.ttf" type="font/ttf" crossorigin />
+        <link rel="preload" as="font" href="../assets/fonts/MinecraftDefault-Regular.woff2" type="font/woff2" crossorigin />
         <link rel="stylesheet" href="../assets/brand-palette.css" />
         <link rel="stylesheet" href="../assets/site-header.css" />
         <link rel="stylesheet" href="../assets/rgb.css" />
@@ -435,9 +464,10 @@
 
                 <!-- FAQ Секция в фирменном стиле -->
                 <section class="rgb-faq-section" aria-labelledby="title-faq">
+                    <h2 id="title-faq" style="font-size: clamp(22px, 2.4vw, 30px); font-weight: 800; margin-bottom: 20px; letter-spacing: -0.015em;">Применение цветного текста на сервере ASTRUM</h2>
                     <div class="rgb-faq-grid">
                         <div class="rgb-faq-item">
-                            <h3 id="title-faq">Кастомный префикс в чате</h3>
+                            <h3>Кастомный префикс в чате</h3>
                             <p>
                                 Вы можете выделиться на сервере и установить себе уникальный цветной префикс с любым градиентом прямо перед ником в чате и табе. Приобрести кастомный префикс можно в нашем официальном магазине доната: <a href="https://shop.astrums.pro/" target="_blank" rel="noopener">shop.astrums.pro</a>. Для выбора префикса сгенерируйте код в формате <b>MiniMessage</b> и шрифтом <b>Small Text</b>!
                             </p>
@@ -469,9 +499,10 @@
             />ASTRUM
         </a>
         <span class="foot-info">
-            Бесплатный ванильный сервер Майнкрафт · IP: astrums.pro · Не является продуктом Mojang<br />Разработка сайта:
+            Бесплатный ванильный сервер Майнкрафт ASTRUM (Аструм) · IP: astrums.pro · Не является продуктом Mojang или Microsoft<br />Разработка сайта:
+            <a href="https://github.com/Australiec" target="_blank" rel="noopener">Australiec</a>,
+            <a href="http://rossek2.ru/" target="_blank" rel="noopener">Rossek2</a>,
             <a href="https://t.me/epartis" target="_blank" rel="noopener">Epartis</a>,
-            <a href="https://github.com/Australiec" target="_blank" rel="noopener">Australiec</a>
         </span>
         <ul>
             <li><a href="../map/">Карта</a></li>
@@ -479,6 +510,8 @@
             <li><a href="../rgb/">RGB Текст</a></li>
             <li><a href="../wiki/">Вики</a></li>
             <li><a href="../wiki/how-play/">Как зайти</a></li>
+            <li><a href="../wiki/rules/">Правила</a></li>
+            <li><a href="../wiki/privacy/">Конфиденциальность</a></li>
             <li><a href="../wiki/mechanics/">Механики</a></li>
             <li><a href="../wiki/crafts/">Крафты</a></li>
             <li><a href="../wiki/brewery/">Brewery</a></li>
@@ -503,5 +536,46 @@
         <script src="../assets/site-header.js" defer></script>
         <script src="fonts.js" defer></script>
         <script src="app.js" defer></script>
+        <!-- LAYOUT:ANALYTICS -->
+        <!-- Analytics (Google Analytics G-2EKC6P77BN & Yandex.Metrika 110548865) -->
+<script>
+    (function () {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+        window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); };
+
+        var loaded = false;
+        function init() {
+            if (loaded) return;
+            loaded = true;
+            ["pointerdown", "keydown", "scroll", "touchstart"].forEach(function (ev) {
+                window.removeEventListener(ev, init, true);
+            });
+            window.gtag("js", new Date());
+            window.gtag("config", "G-2EKC6P77BN");
+            var g = document.createElement("script");
+            g.async = true;
+            g.src = "https://www.googletagmanager.com/gtag/js?id=G-2EKC6P77BN";
+            document.head.appendChild(g);
+
+            (function (m, e, t, r, i, k, a) {
+                m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+                m[i].l = 1 * new Date();
+                k = e.createElement(t);
+                a = e.getElementsByTagName(t)[0];
+                k.async = 1;
+                k.src = r;
+                a.parentNode.insertBefore(k, a);
+            })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+            window.ym(110548865, "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
+        }
+        ["pointerdown", "keydown", "scroll", "touchstart"].forEach(function (ev) {
+            window.addEventListener(ev, init, { once: true, passive: true, capture: true });
+        });
+        window.addEventListener("load", function () { setTimeout(init, 3500); }, { once: true });
+    })();
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/110548865" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- /LAYOUT:ANALYTICS -->
     </body>
 </html>
