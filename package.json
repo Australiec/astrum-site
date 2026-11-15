@@ -4,9 +4,11 @@
   "type": "module",
   "scripts": {
     "build": "node wiki/build.mjs",
+    "build:layout": "node layout/sync.mjs",
     "dev": "node wiki/dev.mjs"
   },
   "dependencies": {
-    "marked": "^12.0.2"
+    "marked": "^12.0.2",
+    "skinview3d": "^3.4.2"
   }
 }

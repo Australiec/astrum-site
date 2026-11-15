@@ -78,12 +78,13 @@
 }
 
 .top.solid .nav-links {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
   list-style: none;
-  width: 600px;
+  width: auto;
   max-width: 100%;
-  flex: 0 1 600px;
+  flex: 0 1 auto;
   min-width: 0;
   height: 46px;
   padding: 4px;
@@ -93,6 +94,7 @@
 }
 .top.solid .nav-links li {
   display: flex;
+  flex: 0 0 auto;
   min-width: 0;
 }
 .top.solid .nav-links a {
@@ -101,8 +103,8 @@
   justify-content: center;
   width: 100%;
   height: 36px;
-  padding: 0 12px;
-  gap: 8px;
+  padding: 0 10px;
+  gap: 7px;
   border-radius: 9999px;
   font-weight: 600;
   font-size: 13px;
@@ -313,6 +315,23 @@ html[data-sky="night"] .top.solid .nav-divider {
   background: rgba(255, 255, 255, 0.14);
 }
 
+@media (min-width: 1021px) and (max-width: 1200px) {
+  .top .wrap {
+    gap: 8px;
+  }
+  .top.solid .nav-links {
+    width: auto;
+    flex: 0 1 auto;
+    padding: 3px;
+    gap: 3px;
+  }
+  .top.solid .nav-links a {
+    padding: 0 8px;
+    gap: 5px;
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 1020px) {
   .top.solid {
     padding: 10px 0;
@@ -376,7 +395,12 @@ html[data-sky="night"] .top.solid .nav-divider {
   .menu-open .top.solid .nav-links {
     display: grid;
   }
+  .top.solid .nav-links li {
+    display: flex;
+    width: 100%;
+  }
   .top.solid .nav-links a {
+    width: 100%;
     height: 44px;
     justify-content: flex-start;
     padding: 0 14px;
@@ -441,3 +465,93 @@ html.sky-circle::view-transition-new(root) {
     scroll-behavior: auto !important;
   }
 }
+
+/* Общий подвал сайта для Wiki, 404 и др. (как на главной странице) */
+footer {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--line);
+  padding: 30px 0;
+  color: var(--muted);
+  font-size: 14.5px;
+  background: var(--bg);
+}
+footer .wrap {
+  width: min(1180px, 100% - 48px);
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+footer .brand {
+  color: var(--ink);
+  font-family: Rubik, system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+footer .brand:hover .logo {
+  transform: scale(1.08) rotate(-4deg);
+}
+footer .logo {
+  width: 26px;
+  height: 26px;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  transition: transform 0.3s;
+}
+footer .foot-info {
+  font-size: 12px;
+  max-width: 440px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+footer .foot-info a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+footer .foot-info a:hover {
+  color: var(--coral);
+}
+footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 22px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+footer ul a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+footer ul a:hover {
+  color: var(--coral);
+}
+@media (max-width: 640px) {
+  footer .wrap {
+    gap: 22px;
+  }
+  footer .wrap > .foot-info {
+    order: 3;
+    flex-basis: 100%;
+    max-width: none;
+    line-height: 1.7;
+  }
+  footer ul {
+    font-size: 12px;
+    gap: 15px;
+  }
+}
+

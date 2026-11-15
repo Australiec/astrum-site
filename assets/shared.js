@@ -89,9 +89,9 @@ const updateActiveNav = () => {
 };
 
 /* Полупрозрачная шапка при прокрутке. */
-const nav = document.getElementById('nav');
+const nav = document.getElementById('site-nav') || document.getElementById('nav');
 const onScroll = () => {
-  nav.classList.toggle('solid', scrollY > 40);
+  if (nav) nav.classList.toggle('solid', scrollY > 40);
   updateActiveNav();
 };
 addEventListener('scroll', onScroll, { passive: true }); onScroll();

@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="ru-RU" data-sky="night">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Гардероб скинов и плащей — ASTRUM</title>
+        <meta
+            name="description"
+            content="Интерактивный 3D-гардероб сервера ASTRUM: примерка скинов и официальных плащей Minecraft, загрузка PNG и ссылок (Discord, Imgur), сохранение в свой гардероб и генерация команды для игры."
+        />
+        <link rel="canonical" href="https://astrums.pro/wardrobe/" />
+        <meta property="og:title" content="Гардероб скинов и плащей — ASTRUM" />
+        <meta
+            property="og:description"
+            content="Интерактивный 3D-гардероб сервера ASTRUM: примерка скинов и официальных плащей Minecraft, загрузка PNG и ссылок (Discord, Imgur), сохранение в свой гардероб и генерация команды для игры."
+        />
+        <meta property="og:url" content="https://astrums.pro/wardrobe/" />
+        <meta property="og:image" content="https://astrums.pro/assets/og.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="theme-color" content="#010101" />
+        <meta name="color-scheme" content="dark light" />
+        <meta name="darkreader-lock" />
+        <link rel="icon" href="../favicon.ico?v=20261106-2" sizes="16x16 32x32 48x48 64x64" />
+        <link rel="icon" href="../assets/logo.webp?v=20261112-1" type="image/webp" />
+        <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=20261106-2" />
+        <script>
+            (function () {
+                var s = null;
+                try {
+                    s = localStorage.getItem("astrum-sky");
+                } catch (e) {}
+                if (s !== "night" && s !== "day") {
+                    s = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "day" : "night";
+                }
+                document.documentElement.dataset.sky = s;
+                var tc = document.querySelector('meta[name="theme-color"]');
+                if (tc) tc.content = s === "night" ? "#010101" : "#fff7fd";
+            })();
+        </script>
+        <link rel="preload" as="font" href="../assets/fonts/rubik.woff2" type="font/woff2" crossorigin />
+        <link rel="preload" as="font" href="../assets/fonts/onest.woff2" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="../assets/site-header.css" />
+        <link rel="stylesheet" href="../assets/wardrobe.css" />
+    </head>
+    <body>
+        <!-- LAYOUT:HEADER -->
+
+
+        <header class="top solid" id="site-nav">
+    <div class="wrap">
+        <a href="../" class="brand" aria-label="ASTRUM — главная">
+            <img class="logo" src="../assets/logo.webp?v=20261112-1" width="36" height="36" alt="" />
+            <span>ASTRUM</span>
+        </a>
+        <ul class="nav-links" id="main-menu">
+            <li>
+                <a href="../">
+                    <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m3 9.5 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <path d="M9 21.5v-9h6v9" />
+                    </svg>
+                    <span>Главная</span>
+                </a>
+            </li>
+            <li>
+                <a href="../map/">
+                    <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true">
+                        <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
+                        <path d="M9 3v15M15 6v15" />
+                    </svg>
+                    <span>Карта</span>
+                </a>
+            </li>
+            <li>
+                <a href="../wiki/">
+                    <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 16v-4M12 8h.01" />
+                    </svg>
+                    <span>Вики</span>
+                </a>
+            </li>
+            <li>
+                <a href="../#faq">
+                    <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01" />
+                    </svg>
+                    <span>Вопросы</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shop.astrums.pro" target="_blank" rel="noopener">
+                    <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+                        <path d="M3 6h18M16 10a4 4 0 0 1-8 0" />
+                    </svg>
+                    <span>Магазин</span>
+                </a>
+            </li>
+            <li>
+                <a href="./" class="active" aria-current="page">
+                    <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" />
+                    </svg>
+                    <span>Гардероб</span>
+                </a>
+            </li>
+            <li>
+                <a href="../rgb/">
+                    <svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+                    </svg>
+                    <span>RGB</span>
+                </a>
+            </li>
+        </ul>
+        <div class="nav-actions">
+            <button class="sw" id="sw" aria-label="Переключить день и ночь" title="День / ночь">
+                <svg class="sun" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="4" />
+                    <path
+                        d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+                    />
+                </svg>
+                <svg class="moon" viewBox="0 0 24 24">
+                    <path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z" />
+                </svg>
+            </button>
+            <span class="nav-divider" aria-hidden="true"></span>
+            <a class="btn btn-main btn-sm nav-btn" href="../#how-play">Начать игру</a>
+            <button class="burger" aria-label="Открыть меню" aria-controls="main-menu" aria-expanded="false"></button>
+        </div>
+    </div>
+</header>
+
+
+        <!-- /LAYOUT:HEADER -->
+
+        <main class="wardrobe-page">
+            <div class="wrap">
+                <header class="wardrobe-head">
+                    <span class="kicker">✦ Примерка и гардероб</span>
+                    <h1>Гардероб <span>скинов и плащей</span></h1>
+                    <p>
+                        Примеряйте скины и официальные плащи в 3D, даже если у вас их нет. Загрузите скин файлом, ссылкой (Discord, Imgur) или при помощи лицензионного ника, сохраняйте свои образы в память браузера и получайте команду для применения на сервере.
+                    </p>
+                </header>
+
+                <div class="wardrobe-grid">
+                    <!-- Левая колонка: 3D-сцена и установка на сервере -->
+                    <div class="stage-column">
+                        <div class="stage-card">
+                            <div class="stage-viewport">
+                                <div class="stage-controls">
+                                    <div class="stage-btn-group">
+                                        <button type="button" class="stage-btn active" id="btn-walk-toggle" title="Анимация ходьбы" aria-label="Включить / выключить ходьбу">
+                                            <svg viewBox="0 0 24 24"><path d="M13 4v16M7 8l6-4 6 4M7 16l6 4 6-4"/></svg>
+                                        </button>
+                                        <button type="button" class="stage-btn" id="btn-reset-view" title="Сбросить угол обзора" aria-label="Сбросить поворот">
+                                            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                                        </button>
+                                    </div>
+                                    <div class="model-switch" role="group" aria-label="Тип модели">
+                                        <button type="button" class="model-opt active" data-model="classic">Classic (Steve)</button>
+                                        <button type="button" class="model-opt" data-model="slim">Slim (Alex)</button>
+                                    </div>
+                                </div>
+                                <canvas id="skin-canvas"></canvas>
+                            </div>
+                            <!-- <div class="stage-foot">
+                                <span>Вращайте персонажа мышкой или касанием</span>
+                                <kbd>3D WebGL</kbd>
+                            </div> -->
+                        </div>
+
+                        <!-- Блок: Установка на сервере -->
+                        <section class="panel-card panel-server" aria-labelledby="title-server">
+                            <div class="panel-card-head">
+                                <div class="panel-card-title" id="title-server">
+                                    <span class="icon-wrap">
+                                        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                    </span>
+                                    <span>Установка на сервере</span>
+                                </div>
+                            </div>
+                            <div class="generate-box">
+                                <button type="button" id="btn-generate" class="btn btn-main btn-generate">
+                                    <div class="spinner"></div>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+                                    <span>Получить скин для сервера</span>
+                                </button>
+
+                                <div id="result-box" class="result-box" hidden>
+                                    <div class="result-box-top">
+                                        <span class="result-badge">Ссылка готова</span>
+                                    </div>
+                                    <div class="result-code-wrap">
+                                        <code class="result-code" id="result-code">/skin url ...</code>
+                                        <button type="button" class="btn-copy" id="btn-copy">
+                                            <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                            <span>Копировать</span>
+                                        </button>
+                                    </div>
+                                    <p class="result-hint">
+                                        Вставьте команду в игровой чат на сервере ASTRUM (IP: <code>astrums.pro</code>). Плагин SkinsRestorer применит ваш скин.
+                                    </p>
+                                    <div class="result-extra" id="result-extra" hidden>
+                                        <a href="#" id="result-mineskin-link" target="_blank" rel="noopener" class="result-mineskin-link">
+                                            <span>Посмотреть скин на MineSkin.org</span>
+                                            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Правая колонка: настройки -->
+                    <div class="panels-stack">
+                        <!-- Панель 1: Загрузка скина -->
+                        <section class="panel-card" aria-labelledby="title-skin">
+                            <div class="panel-card-head">
+                                <div class="panel-card-title" id="title-skin">
+                                    <span class="icon-wrap">
+                                        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    </span>
+                                    <span>Загрузка скина</span>
+                                </div>
+                            </div>
+
+                            <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Перетащите скин PNG сюда">
+                                <input type="file" id="skin-file-input" accept="image/png" aria-label="Выбрать файл скина PNG" />
+                                <div class="dropzone-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                </div>
+                                <strong>Перетащите PNG-файл сюда или нажмите</strong>
+                                <span>Поддерживаются форматы 64×64 и 64×32 (до 150 КБ)</span>
+                            </div>
+
+                            <div class="or-divider"><span>или введите ник / ссылку</span></div>
+
+                            <div class="url-input-row">
+                                <input
+                                    type="text"
+                                    id="skin-url-input"
+                                    class="url-input"
+                                    placeholder="Ник лицензии или ссылка на PNG скина..."
+                                    aria-label="Никнейм игрока или ссылка на скин"
+                                    autocomplete="off"
+                                    spellcheck="false"
+                                />
+                                <button type="button" id="skin-url-btn" class="url-btn">Загрузить</button>
+                            </div>
+                            <div class="url-hints">Никнейм лицензионного аккаунта или прямая ссылка на PNG (https://cdn.discordapp.com/... или imgur.com).</div>
+                        </section>
+
+                        <!-- Панель 2: Выбор плаща -->
+                        <section class="panel-card" aria-labelledby="title-capes">
+                            <div class="panel-card-head">
+                                <div class="panel-card-title" id="title-capes">
+                                    <span class="icon-wrap">
+                                        <svg viewBox="0 0 24 24"><path d="M6 3v18l6-3 6 3V3z"/></svg>
+                                    </span>
+                                    <span>Официальные плащи</span>
+                                </div>
+                            </div>
+                            <div class="capes-grid" id="capes-grid">
+                                <!-- Список плащей генерируется скриптом -->
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Панель 4: Мой гардероб (сохранённые скины в IndexedDB) -->
+                <section class="wardrobe-inventory" aria-labelledby="title-inventory">
+                    <div class="inventory-head">
+                        <div class="inventory-title-group">
+                            <h2 id="title-inventory">Мой гардероб</h2>
+                            <p>Сохранённые образы в памяти вашего браузера</p>
+                        </div>
+                        <div class="inventory-actions">
+                            <button type="button" id="btn-save-skin" class="btn-save-skin">
+                                <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                                <span>Сохранить текущий скин</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="inventory-grid" id="inventory-grid">
+                        <!-- Список сохранённых скинов -->
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- LAYOUT:FOOTER -->
+
+
+        <footer>
+    <div class="wrap">
+        <a href="../" class="brand">
+            <img
+                class="logo"
+                src="../assets/logo.webp?v=20261112-1"
+                width="26"
+                height="26"
+                alt=""
+                style="width: 26px; height: 26px"
+            />ASTRUM
+        </a>
+        <span class="foot-info">
+            Бесплатный ванильный сервер Майнкрафт · IP: astrums.pro · Не является продуктом Mojang<br />Разработка сайта:
+            <a href="https://t.me/epartis" target="_blank" rel="noopener">Epartis</a>,
+            <a href="https://github.com/Australiec" target="_blank" rel="noopener">Australiec</a>
+        </span>
+        <ul>
+            <li><a href="../map/">Карта</a></li>
+            <li><a href="../wardrobe/">Гардероб</a></li>
+            <li><a href="../rgb/">RGB Текст</a></li>
+            <li><a href="../wiki/">Вики</a></li>
+            <li><a href="../wiki/how-play/">Как зайти</a></li>
+            <li><a href="../wiki/mechanics/">Механики</a></li>
+            <li><a href="../wiki/crafts/">Крафты</a></li>
+            <li><a href="../wiki/brewery/">Brewery</a></li>
+            <li><a href="https://shop.astrums.pro" target="_blank" rel="noopener">Магазин</a></li>
+            <li><a href="https://discord.gg/7jnWGDB2fP" target="_blank" rel="noopener">Discord</a></li>
+            <li><a href="https://t.me/ast_mc" target="_blank" rel="noopener">Telegram</a></li>
+        </ul>
+    </div>
+</footer>
+
+
+        <!-- /LAYOUT:FOOTER -->
+
+        <div class="toast" id="toast" role="status"></div>
+
+        <script src="../assets/skinview3d.bundle.js"></script>
+        <script src="../assets/site-header.js" defer></script>
+        <script src="app.js" defer></script>
+    </body>
+</html>

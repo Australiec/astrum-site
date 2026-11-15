@@ -9,6 +9,7 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, readdirSync, readFileSync, statSync, watch, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { renderFooter, renderHeader, syncAllLayouts } from "../layout/sync.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "..");
@@ -53,6 +54,7 @@ function trimDesc(text, max = 155) {
 
 function build() {
     const SITE = (process.env.SITE_URL || JSON.parse(read(join(root, "site.json"))).url).replace(/\/$/, "");
+    const { headerTpl, footerTpl } = syncAllLayouts();
     const template = read(join(here, "_template.html"));
 
     /* статьи */
@@ -190,6 +192,15 @@ function build() {
             ],
         });
 
+        const wikiHeader = renderHeader(headerTpl, {
+            rootPrefix: UP,
+            active: "wiki",
+            isSolid: true,
+        });
+        const wikiFooter = renderFooter(footerTpl, {
+            rootPrefix: UP,
+        });
+
         const out = template
             .replace(/{{TITLE}}/g, esc(title))
             .replace(/{{DESC}}/g, desc)
@@ -198,6 +209,8 @@ function build() {
             .replace(/{{UP}}/g, UP)
             .replace(/{{W}}/g, W)
             .replace("{{JSONLD}}", ld.replace(/</g, "\\u003c"))
+            .replace("{{HEADER}}", () => wikiHeader)
+            .replace("{{FOOTER}}", () => wikiFooter)
             .replace("{{MENU}}", menu)
             .replace("{{GROUP}}", esc(p.group))
             .replace("{{H1}}", esc(p.title))
@@ -241,6 +254,8 @@ function build() {
     const urls = [
         [`${SITE}/`, day(getLastModified("index.html"))],
         [`${SITE}/map/`, day(getLastModified("map/index.html"))],
+        [`${SITE}/wardrobe/`, day(getLastModified("wardrobe/index.html"))],
+        [`${SITE}/rgb/`, day(getLastModified("rgb/index.html"))],
         ...pages.map(p => [urlOf(p), day(p.mtime)]),
     ];
     writeFileSync(
@@ -298,6 +313,7 @@ function build() {
 
 - [Главная страница](${SITE}/): обзор сервера, быстрый старт, особенности и FAQ
 - [Онлайн-карта мира](${SITE}/map/): интерактивная карта городов, спавна и границ измерений
+- [Гардероб скинов и плащей](${SITE}/wardrobe/): 3D-гардероб скинов и официальных плащей, генерация команды для сервера
 - [Магазин поддержки](https://shop.astrums.pro/): добровольная поддержка проекта
 - [Полная документация для ИИ (llms-full.txt)](${SITE}/llms-full.txt): весь текст вики-базы знаний в одном Markdown-файле
 
@@ -323,11 +339,11 @@ ${pageSummaries}
     console.log(`Вики: ${pages.length} страниц · ${SITE}`);
 
     if (process.argv.includes("--stamp")) {
-        for (const f of ["index.html", "map/index.html"]) {
+        for (const f of ["index.html", "map/index.html", "wardrobe/index.html"]) {
             const p = join(root, f);
             writeFileSync(p, read(p).replace(/__SITE__/g, SITE));
         }
-        console.log("Адрес сайта подставлен в index.html и map/index.html");
+        console.log("Адрес сайта подставлен в index.html, map/index.html и wardrobe/index.html");
     }
 }
 
@@ -335,17 +351,22 @@ build();
 
 if (process.argv.includes("--watch")) {
     let t;
+    const schedule = () => {
+        clearTimeout(t);
+        t = setTimeout(() => {
+            try {
+                build();
+            } catch (e) {
+                console.error(e.message);
+            }
+        }, 200);
+    };
     watch(contentDir, (_, f) => {
-        if (f && f.endsWith(".md")) {
-            clearTimeout(t);
-            t = setTimeout(() => {
-                try {
-                    build();
-                } catch (e) {
-                    console.error(e.message);
-                }
-            }, 200);
-        }
+        if (f && f.endsWith(".md")) schedule();
     });
-    console.log("Слежу за wiki/content …");
+    const layoutDir = join(root, "layout");
+    watch(layoutDir, (_, f) => {
+        if (f && f.endsWith(".html")) schedule();
+    });
+    console.log("Слежу за wiki/content и layout …");
 }

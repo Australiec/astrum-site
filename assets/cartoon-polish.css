@@ -125,10 +125,11 @@ footer .wrap > span { font-size: 12px; max-width: 370px; }
   .join-panel h2 { font-size: 19px; }
   .card-scene { height: 210px; }
 }
-@media (min-width: 1021px) and (max-width: 1180px) {
-  .top:not(.solid) .wrap { gap: 12px; }
-  .top:not(.solid) .brand { font-size: 20px; padding-inline: 10px; }
-  .top:not(.solid) .nav-links a { font-size: 13px; padding-inline: 10px; }
+@media (min-width: 1021px) and (max-width: 1200px) {
+  .top:not(.solid) .wrap { gap: 8px; }
+  .top:not(.solid) .brand { font-size: 19px; padding-inline: 10px; }
+  .top:not(.solid) .nav-links { width: auto; flex: 0 1 auto; padding: 4px; gap: 3px; }
+  .top:not(.solid) .nav-links a { font-size: 12px; padding-inline: 8px; gap: 5px; }
 }
 @media (max-width: 1020px) {
   .top:not(.solid) .nav-links { background: #fffffff9; backdrop-filter: blur(20px); border-color: var(--line); }
@@ -139,7 +140,8 @@ footer .wrap > span { font-size: 12px; max-width: 370px; }
   .hero-copy > .ip { display: inline-flex; }
   .top .nav-links, .top.solid .nav-links { display: none; width: auto; height: auto; padding: 8px; gap: 4px; grid-template-columns: 1fr; }
   .menu-open .top .nav-links { display: grid; }
-  .top .nav-links a, .top.solid .nav-links a { height: 44px; justify-content: flex-start; padding: 0 14px; font-size: 14px; gap: 8px; }
+  .top .nav-links li, .top.solid .nav-links li { width: 100%; display: flex; }
+  .top .nav-links a, .top.solid .nav-links a { width: 100%; height: 44px; justify-content: flex-start; padding: 0 14px; font-size: 14px; gap: 8px; }
   .top .nav-ic, .top.solid .nav-ic { width: 17px; height: 17px; }
   .hero h1 { font-size: clamp(44px, 8.2vw, 72px); max-width: 10em; }
   section { padding-block: 70px; }
