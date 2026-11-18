@@ -1,4 +1,7 @@
 /* Общая шапка сайта (капсульный вид с главной страницы) для Wiki и Map */
+html {
+  scrollbar-gutter: stable;
+}
 .top,
 .top * {
   box-sizing: border-box;

@@ -116,6 +116,7 @@
             }
             html {
                 font-size: 62.5%; /* LiveAtlas рассчитан на 1rem = 10px (62.5%) */
+                scrollbar-gutter: stable;
             }
             html,
             body {
@@ -364,19 +365,51 @@
         </noscript>
         <script>
             (function () {
+                // Защита title страницы от перезаписи сторонним приложением LiveAtlas / squaremap
+                const targetTitle = document.title;
+                const titleEl = document.querySelector('title');
+                if (titleEl) {
+                    new MutationObserver(() => {
+                        if (document.title !== targetTitle) {
+                            document.title = targetTitle;
+                        }
+                    }).observe(titleEl, { childList: true, subtree: true, characterData: true });
+                }
+
                 // Перехватываем fetch для отключения credentials: "include",
                 // который LiveAtlas шлет по умолчанию. Без этого браузер строго
                 // блокирует ответы с Access-Control-Allow-Origin: * по стандарту CORS.
+                // Также подменяем ui.title в settings.json, чтобы LiveAtlas использовал наш заголовок.
                 const originalFetch = window.fetch;
-                window.fetch = function (resource, init) {
+                window.fetch = async function (resource, init) {
+                    let req = resource;
                     if (resource instanceof Request) {
                         if (resource.credentials === 'include') {
-                            resource = new Request(resource, { credentials: 'same-origin' });
+                            req = new Request(resource, { credentials: 'same-origin' });
                         }
                     } else if (init && init.credentials === 'include') {
                         init = Object.assign({}, init, { credentials: 'same-origin' });
                     }
-                    return originalFetch.call(this, resource, init);
+
+                    const response = await originalFetch.call(this, req, init);
+
+                    const url = typeof resource === 'string' ? resource : (resource && resource.url) || '';
+                    if (url.includes('settings.json') && response.ok) {
+                        try {
+                            const clone = response.clone();
+                            const data = await clone.json();
+                            if (data && data.ui) {
+                                data.ui.title = targetTitle;
+                                return new Response(JSON.stringify(data), {
+                                    status: response.status,
+                                    statusText: response.statusText,
+                                    headers: response.headers
+                                });
+                            }
+                        } catch (e) {}
+                    }
+
+                    return response;
                 };
 
                 const CF_ENDPOINT = 'https://map-cdn.astrums.pro/';
